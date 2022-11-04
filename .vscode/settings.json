@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "__threading_support": "c",
+    "compare": "c",
+    "type_traits": "c",
+    "typeinfo": "c",
+    "iterator": "c",
+    "memory": "c",
+    "functional": "c"
+  }
+}
