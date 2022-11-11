@@ -1,41 +1,22 @@
+#include "objs/checker/checker.h"
 #include <stdio.h>
-#include <stdbool.h>
-#include <ctype.h>
-#include <string.h>
-#include "checker.h"
-
-bool  is_valid(char **argv) {
-	int i = 0;
-	int j = 0;
-
-	while (argv[i] != NULL) {
-		j = 0;
-		while (argv[i][j] != '\0') {
-			if (!isdigit(argv[i][j])) {
-				return false;
-			}
-			j++;
-		}
-		i++;
-	}
-	return true;
-}
+#include "helpers/helpers.h"
 
 int main(int argc, char **argv) {
-	t_checker *program;
+	t_checker *checker;
 	int ret;
 
+	ret = 0;
 	if (argc > 1) {
-		char **real_argv = &argv[1];
-		if (is_valid(real_argv) && !is_dup(real_argv)) {
-			program = new_checker(real_argv);
-			if (program != NULL) {
-				return checker_execute_instructions(program);
-			};
+		// checker = new_checker(argc - 1, &argv[1]);
+
+		checker = new_checker(6, get_numbers_helper());
+		if (checker) {
+			ret = checker_execute_instructions(checker);
+			checker_destructor(checker);
 		} else {
-			fprintf(stderr, "Error\n");
+			ret = 1;
 		}
-		return 1;
 	}
-	return 0;
+	return ret;
 }
