@@ -24,10 +24,12 @@ int stack_constructor_simple(t_stack *stack) {
 }
 
 int is_number(char *argv) {
+  (void)argv;
   return 1;
 }
 
 int is_dup(char *argv) {
+  (void)argv;
   return 0;
 }
 

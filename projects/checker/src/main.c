@@ -8,6 +8,7 @@ int main(int argc, char **argv) {
 
 	ret = 0;
 	if (argc > 1) {
+		(void)argv;
 		// checker = new_checker(argc - 1, &argv[1]);
 
 		checker = new_checker(6, get_numbers_helper());

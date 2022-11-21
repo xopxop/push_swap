@@ -5,7 +5,7 @@
 
 char **get_instructions_helper() {
   char **instructions = (char**)malloc(sizeof(char*) * 11);
-  int i;
+  int i = 0;
 
   while (i < 11) {
     if (i < 10) {

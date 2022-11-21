@@ -65,7 +65,7 @@ int checker_execute_instructions(t_checker *program) {
 void print_instructions(char **instructions) {
   while (*instructions) {
     printf("%s ", *instructions);
-    *instructions++;
+    (*instructions)++;
   }
 }
 
