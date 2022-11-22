@@ -1,28 +1,27 @@
 CC := clang
 CFLAGS := -Wall -Wextra -Werror
 DEBUG := -g
-PROGRAM_NAME = checker
+PROGRAM = checker
 SOURCES_DIR:= ./src
-SOURCES := $(shell find $(SOURCES_DIR) -name '*.c')
-OBJECT_FILES := main.o checker.o node.o stack.o helpers.o
+SOURCES_FILES := $(shell find $(SOURCES_DIR) -name '*.c')
+BUILD_DIR := ./build
+MATCHING_RULE := $(addprefix $(BUILD_DIR)/,$(SOURCES_FILES:%.c=%.o))
 
-# %.o : %.c
-# 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+all: mkdirs $(PROGRAM)
+	@echo "DONE"
 
-tell:
-	echo $(SOURCES)
+mkdirs:
+	mkdir -p $(BUILD_DIR)
 
-all:
-	$(CC) $(CFLAGS) -c $(FILES)
-	$(CC) main.o checker.o node.o stack.o helpers.o -o $(PROGRAM_NAME)
+$(BUILD_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $(BUILD_DIR)/$(notdir $@)
 
+$(PROGRAM): $(MATCHING_RULE)
+	$(CC) $(CFLAGS) $(shell find $(BUILD_DIR) -name '*.o') -o $@
+	
 clean:
 	rm -Rf $(PROGRAM_NAME)
 	rm -Rf *.o
-
-# $(OBJECT_FILES):
-
-# $(PROGRAM): $(CC) $(CFLAGS) 
 
 # all:
 
@@ -31,3 +30,5 @@ clean:
 # fclean:
 
 # re: fclean all
+
+.PHONY: all mkdirs clean
