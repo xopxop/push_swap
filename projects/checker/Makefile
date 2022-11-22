@@ -8,7 +8,7 @@ BUILD_DIR := ./build
 MATCHING_RULE := $(addprefix $(BUILD_DIR)/,$(SOURCES_FILES:%.c=%.o))
 
 all: mkdirs $(PROGRAM)
-	@echo "DONE"
+	@echo "$(PROGRAM) created"
 
 mkdirs:
 	mkdir -p $(BUILD_DIR)
@@ -20,15 +20,11 @@ $(PROGRAM): $(MATCHING_RULE)
 	$(CC) $(CFLAGS) $(shell find $(BUILD_DIR) -name '*.o') -o $@
 	
 clean:
-	rm -Rf $(PROGRAM_NAME)
-	rm -Rf *.o
+	rm -Rf $(BUILD_DIR)
 
-# all:
+fclean: clean
+	rm -Rf $(PROGRAM)
 
-# clean:
+re: fclean all
 
-# fclean:
-
-# re: fclean all
-
-.PHONY: all mkdirs clean
+.PHONY: all mkdirs clean fclean re
