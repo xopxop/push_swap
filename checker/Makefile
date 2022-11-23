@@ -6,9 +6,14 @@ SOURCES_DIR:= ./src
 SOURCES_FILES := $(shell find $(SOURCES_DIR) -name '*.c')
 BUILD_DIR := ./build
 MATCHING_RULE := $(addprefix $(BUILD_DIR)/,$(SOURCES_FILES:%.c=%.o))
-
-all: mkdirs $(PROGRAM)
+LIBFT_DIR := ../libft
+LIB := -L$(LIBFT_DIR)/ -lft
+ 
+all: mkdirs lft $(PROGRAM)
 	@echo "$(PROGRAM) created"
+
+lft:
+	@cd $(LIBFT_DIR) && $(MAKE) -s
 
 mkdirs:
 	mkdir -p $(BUILD_DIR)
@@ -17,7 +22,7 @@ $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $(BUILD_DIR)/$(notdir $@)
 
 $(PROGRAM): $(MATCHING_RULE)
-	$(CC) $(CFLAGS) $(shell find $(BUILD_DIR) -name '*.o') -o $@
+	$(CC) $(CFLAGS) $(shell find $(BUILD_DIR) -name '*.o') $(LIB) -o $@
 	
 clean:
 	rm -Rf $(BUILD_DIR)
