@@ -9,14 +9,11 @@ MATCHING_RULE := $(addprefix $(BUILD_DIR)/,$(SOURCES_FILES:%.c=%.o))
 LIBFT_DIR := ../libft
 LIB := -L$(LIBFT_DIR)/ -lft
  
-all: mkdirs lft $(PROGRAM)
+all: mkdirs $(PROGRAM)
 	@echo "$(PROGRAM) created"
 
-lft:
-	@cd $(LIBFT_DIR) && $(MAKE) -s
-
 mkdirs:
-	mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $(BUILD_DIR)/$(notdir $@)
