@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/23 18:24:55 by dthan             #+#    #+#             */
+/*   Updated: 2022/11/24 12:53:50 by dthan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
-#include <stdio.h>
-#include <string.h>
-#include "../../helpers/helpers.h"
+#include "libft.h"
 
 t_checker *new_checker(int argc, char **argv) {
 	t_checker *checker = (t_checker*)malloc(sizeof(t_checker));
@@ -9,6 +19,22 @@ t_checker *new_checker(int argc, char **argv) {
     return checker_destructor(checker);
   }
   return checker;
+}
+
+char **get_instructions()
+{
+  char *instruction;
+  char **instructions;
+
+  while(get_next_line(1, &instruction))
+  {
+      if (instruction && valid_instruction(instruction))
+        // add into instructions
+      else
+        break;
+  }
+  
+  return (instructions);
 }
 
 int checker_constructor(t_checker *program, int argc, char **argv) {

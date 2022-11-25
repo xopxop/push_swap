@@ -6,14 +6,12 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:21 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/22 15:02:10 by dthan            ###   ########.fr       */
+/*   Updated: 2022/11/23 18:45:26 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 #define STACK_H
-#include <stdlib.h>
-#include <stdbool.h>
 #include "../node/node.h"
 
 typedef struct s_stack {

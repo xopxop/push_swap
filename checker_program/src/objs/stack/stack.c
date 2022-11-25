@@ -6,14 +6,13 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:44 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/22 14:59:45 by dthan            ###   ########.fr       */
+/*   Updated: 2022/11/23 18:45:30 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
-#include <stdio.h>
 
 t_stack *new_stack(int argc, char** argv) {
   t_stack *stack = (t_stack*)malloc(sizeof(t_stack));
