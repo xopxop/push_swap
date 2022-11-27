@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:24:55 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/24 12:53:50 by dthan            ###   ########.fr       */
+/*   Updated: 2022/11/27 19:15:19 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 t_checker *new_checker(int argc, char **argv) {
 	t_checker *checker = (t_checker*)malloc(sizeof(t_checker));
-  if (checker_constructor(checker, argc, argv) == CONSTRUCTOR_FAILED) {
+  if (checker_constructor(checker, argc, argv) == CONSTRUCTOR_FAILED)
     return checker_destructor(checker);
-  }
   return checker;
 }
 
@@ -25,13 +24,17 @@ char **get_instructions()
 {
   char *instruction;
   char **instructions;
+  char **ptr;
+  int size;
+  char *ptr2;
 
+  size = 0;
   while(get_next_line(1, &instruction))
   {
-      if (instruction && valid_instruction(instruction))
-        // add into instructions
-      else
-        break;
+    if (instruction && valid_instruction(instruction))
+      ft_array_calloc(instructions, instruction);
+    else
+      break;
   }
   
   return (instructions);
@@ -39,27 +42,27 @@ char **get_instructions()
 
 int checker_constructor(t_checker *program, int argc, char **argv) {
   program->stack_a = new_stack(argc, argv);
-  if (!program->stack_a) {
+  if (!program->stack_a)
     return CONSTRUCTOR_FAILED;
-  }
   program->stack_b = new_stack(0, NULL);
-  // need to write this later
-  program->instructions = get_instructions_helper();
-  if (!program->instructions) {
+  program->instructions = get_instructions();
+  if (!program->instructions)
     return CONSTRUCTOR_FAILED;
-  }
   return CONSTRUCTOR_SUCCESS;
 }
 
 t_checker *checker_destructor(t_checker *program) {
-  if (program->stack_a) {
+  int increment;
+
+  if (program->stack_a)
     stack_destructor(program->stack_a);
-  }
-  if (program->stack_b) {
+  if (program->stack_b)
     stack_destructor(program->stack_b);
-  }
   if (program->instructions) {
-    // delete instructions
+    increment = 0;
+    while (program->instructions[increment])
+      free(program->instructions[increment++]);
+    free(program->instructions);
   }
   return NULL;
 }

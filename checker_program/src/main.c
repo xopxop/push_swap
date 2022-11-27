@@ -18,7 +18,6 @@ int main(int argc, char **argv) {
 
 	ret = 0;
 	if (argc > 1) {
-		(void)argv;
 		checker = new_checker(argc - 1, &argv[1]);
 		if (checker) {
 			ret = checker_execute_instructions(checker);
