@@ -1,0 +1,71 @@
+          pb        pb       sa         pb        ss      pb         
+3         
+6       6         
+7       7         7         5
+5       5         5         7          7         2
+2       2         2         2          2         7       7         7
+1       1         1         1          1         1       1         1
+0       0         0         0          0         0       0    2    0     6
+4       4         4         4          4     5   4   6   4    6    4     5
+8       8         8    6    8     6    8     6   8   5   8    5    8     3
+9       9     3   9    3    9     3    9     3   9   3   9    3    9     2
+------- -------- --------  ---------  --------- ------- --------  ---------
+a    b  a     b   a    b    a     b    a     b  a     b  a    b    a     b
+
+
+                                                          
+
+
+                                                          pb
+  sa     pb       sa       ---    pb      --      sa        4         6
+1                                   0       6       6       6         4
+7       7    1  0    1   0  6       6       5       5       5         5
+0   6   0    6  7    6   7  5   7   5    7  3    4  3       3         3
+4   5   4    5  4    5   4  3   4   3    4  2    7  2    7  2     7   2
+8   3   8    3  8    3   8  2   8   2    8  1    8  1    8  1     8   1
+9   2   9    2  9    2   9  1   9   1    9  0    9  0    9  0     9   0
+------  ------  ------- ------ -------  ------  ------  -------  -------
+a    b  a    b  a    b   a  b   a   b    a   b  a    b   a   b    a   b
+
+-> pa -> sb -> pa -> pa
+
+
+if can_rotate => do it
+else if can_swap => do it
+else if can_reverse_rotate => do it
+
+case of 2
+if can rotate => do it
+else if can_swap => 
+
+
+Order of the Operation?
+Ascending Order
+rotate
+    list > 2
+        when first_node > next_node && first_node > last_node && next_node < last_node
+reverse rotate
+    list > 2
+        when first_node > last_node
+swap
+    list > 1
+        when first_node > next_node
+
+running through the list
+first check if we can operate 2 stacks at the same time
+else if only stack a
+else if only stack b
+
+
+Which stack is operated first?
+looping when B is not empty && A is not in order:
+    if A and B both in order: => A and B is not empty and in order:
+        it is the think that we want and only operation is pushing to A till B is empty
+    elseif A and B both not in oder => A and B is not empty and not in order:
+        do operation for both A and B if possible, if not possible last thing is move to check operation in each stack => stack A and B, which one will be operated first?
+    elseif only A in order: => A can be empty or in order:
+        operate in B:
+            last is pushing to A
+    elseif only B in order: => B can be empty or in order:
+        operate in A:
+            last is pushing to B

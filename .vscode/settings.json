@@ -12,6 +12,23 @@
 		"utility": "c",
 		"vector": "c",
 		"stdlib.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"stack.h": "c",
+		"__node_handle": "c",
+		"algorithm": "c",
+		"__bit_reference": "c",
+		"__functional_03": "c",
+		"__mutex_base": "c",
+		"functional": "c",
+		"ios": "c",
+		"istream": "c",
+		"memory": "c",
+		"optional": "c",
+		"ostream": "c",
+		"sstream": "c",
+		"streambuf": "c",
+		"tuple": "c",
+		"chrono": "c",
+		"node.h": "c"
 	}
 }

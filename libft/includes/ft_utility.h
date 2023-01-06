@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utility.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dthan <dthan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 06:49:13 by dthan             #+#    #+#             */
-/*   Updated: 2020/07/09 02:37:58 by dthan            ###   ########.fr       */
+/*   Updated: 2022/11/27 19:52:18 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ char	*ft_strjoin_and_free_string2(char *string1, char *string2);
 char	*ft_strjoin_and_free_string1(char *string1, char *string2);
 int		ft_arrayct(char **input);
 void	ft_arraydel(char **string_array);
+char	**ft_array_calloc(char **old_array, char *item);
 
 #endif

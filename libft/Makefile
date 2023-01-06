@@ -6,7 +6,7 @@
 #    By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 16:34:34 by dthan             #+#    #+#              #
-#    Updated: 2021/02/04 14:54:14 by dthan            ###   ########.fr        #
+#    Updated: 2022/11/27 20:23:17 by dthan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,6 +139,7 @@ UTILITY_FILES += ft_itoa_signed_and_unsigned_long_long.c
 UTILITY_FILES += ft_strrev.c
 UTILITY_FILES += ft_arrayct.c
 UTILITY_FILES += ft_arraydel.c
+UTILITY_FILES += ft_array_calloc.c
 UTILITY := $(addprefix $(UTILITY_DIR)/,$(UTILITY_FILES))
 
 #<<<<<<<<<<GET_NEXT_LINE_PROJECT>>>>>>>>>#
