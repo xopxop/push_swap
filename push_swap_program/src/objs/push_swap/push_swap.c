@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/06 14:24:07 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/07 01:39:36 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,18 +148,6 @@ char *push_swap_generate_instructions(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-#include "../../../../shared-objs/node/node.h"
-void print_stack(t_stack *stack)
-{
-	t_node *node = stack->first_node;
-
-	while (node) {
-		ft_printf("%d ->", node->data);
-		node = node->next;
-	}
-	ft_printf("NULL\n");
-}
-
 void push_swap_run(t_push_swap *program)
 {
 	t_stack *stack_a;
@@ -174,33 +162,11 @@ void push_swap_run(t_push_swap *program)
 	{
 		if (stack_is_empty(stack_b) && stack_is_ascending_sorted(stack_a))
 			break ;
-		// ft_printf("STACK A:\n");
-		// print_stack(stack_a);
-		// ft_printf("STACK B:\n");
-		// print_stack(stack_b);
 		instruction = push_swap_generate_instructions(stack_a, stack_b);
-		// ft_printf("%s\n", instruction);
 		execute_instruction(stack_a, stack_b, instruction);
+		print_state(stack_a, stack_b, instruction);
 		free(instruction);
 		i++;
-		// sleep(1);
 	}
 	ft_printf("Total: %d\n", i);
 }
-
-// if stackA and/or stackB are not sorted
-// 	if stackA and stackB are not sorted
-// 		if do swap both -> do ss
-// 		else if do rotate both -> do rr
-// 		else if do reverse rotate both -> do rrr
-// 	else if stackA is not sorted
-// 		if do swap -> do sa
-// 		else if do rotate -> do ra
-// 		else if do revere rotate -> do rra
-// 	else if stackB is not sorted
-// 		if do swap -> do sb
-// 		else if do rotate -> do rb
-// 		else if do revere rotate -> do rrb
-// 	push from stackA to stackB -> do pb
-// else
-// 	push stackB to stackA -> do pa
