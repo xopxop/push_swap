@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:44 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/29 16:03:24 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/16 20:31:14 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	is_dup(char *argv, t_node *node)
 	int	number;
 
 	number = ft_atoi(argv);
+
 	while (node)
 	{
 		if (number == node->data)
@@ -59,6 +60,9 @@ int	stack_constructor_complex(t_stack *stack, char **argv)
 
 	i = 0;
 	temp = ft_strsplit(argv[0], ' ');
+	stack->first_node = NULL;
+	stack->last_node = NULL;
+	stack->count = 0;
 	while (temp[i])
 	{
 		if (is_number(temp[i]) && !is_dup(temp[i], stack->first_node))

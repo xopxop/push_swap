@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/13 12:18:58 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/16 20:31:30 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ char *push_swap_generate_instructions(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+/*
 void push_swap_run(t_push_swap *program)
 {
 	t_stack *stack_a;
@@ -169,4 +170,56 @@ void push_swap_run(t_push_swap *program)
 		i++;
 	}
 	ft_printf("Total: %d\n", i);
+}
+*/
+
+int push_swap_auto(t_push_swap *program)
+{
+	t_stack *stack_a;
+	t_stack *stack_b;
+	char *instruction;
+	int step;
+
+	step = 0;
+	stack_a = program->stack_a;
+	stack_b = program->stack_b;
+	while ("looping")
+	{
+		if (stack_is_empty(stack_b) && stack_is_ascending_sorted(stack_a))
+			break ;
+		instruction = push_swap_generate_instructions(stack_a, stack_b);
+		execute_instruction(stack_a, stack_b, instruction);
+		// print_state(stack_a, stack_b, instruction);
+		free(instruction);
+		step++;
+	}
+	return step;
+}
+
+int push_stack(t_push_swap *program)
+{
+	int step;
+
+	step = 0;
+	while (program->stack_a->count == 3)
+	{
+		execute_instruction(program->stack_a, program->stack_b, "pb");
+		step++;
+	}
+	return step;
+}
+
+int push_swap_spliter(t_push_swap *program)
+{
+	if (program->stack_a->count >= 5)
+		return push_stack(program);
+	return 0;
+}
+
+void push_swap_run(t_push_swap *program)
+{
+	int pre_step;
+
+	pre_step = push_swap_spliter(program);
+	ft_printf("Total: %d\n", push_swap_auto(program));
 }

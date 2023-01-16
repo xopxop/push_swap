@@ -4,6 +4,8 @@
 #include "../shared-objs/stack/stack.h"
 #include "../shared-objs/node/node.h"
 
+/*
+
 void print_separator()
 {
 	struct winsize w;
@@ -151,3 +153,4 @@ void print_state(t_stack *stack_a, t_stack *stack_b, char *instruction)
 	print_instruction(instruction);
 	print_stacks(stack_a, stack_b);
 }
+*/
