@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:22:24 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/25 00:26:24 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/25 21:06:16 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_node *smallest_number(t_stack *stack)
 
 	while (node)
 	{
-		if (!smallest_number_node || smallest_number_node->data < node->data)
+		if (!smallest_number_node || smallest_number_node->data > node->data)
 			smallest_number_node = node;
 		node = node->next;
 	}
