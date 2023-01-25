@@ -6,25 +6,27 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:22:24 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/23 21:46:24 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/25 00:26:24 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../../../../libft/includes/libft.h"
 
-void move_to_top(t_stack *stack, t_node *node)
+unsigned int move_to_top(t_stack *stack, t_node *node)
 {
 	int node_index = get_index(stack, node);
 	int proximity = stack->count / 2;
 	char *instruction;
+    unsigned int operation_count = 0;
 	
 	if (node_index >= proximity)
 		instruction = "ra";
 	else
 		instruction = "rra";
 	while (stack->first_node == node)
-		execute_instruction(stack, NULL, instruction);
+		operation_count += execute_instruction(stack, NULL, instruction);
+    return operation_count;
 }
 
 t_node *smallest_number(t_stack *stack)
@@ -51,8 +53,8 @@ int move_smallest_numbers_to_stack_b(t_push_swap *program)
     while (stack_a->count > 3)
     {
         smallest_number_node = smallest_number(stack_a);
-        move_to_top(stack_a, smallest_number_node);
-        execute_instruction(stack_a, stack_b, "pb");
+        operation_count += move_to_top(stack_a, smallest_number_node);
+        operation_count += execute_instruction(stack_a, stack_b, "pb");
     }
     return operation_count;    
 }
