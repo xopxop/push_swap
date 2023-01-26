@@ -6,42 +6,12 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:22:24 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/25 21:06:16 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/26 20:47:28 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../../../../libft/includes/libft.h"
-
-unsigned int move_to_top(t_stack *stack, t_node *node)
-{
-	int node_index = get_index(stack, node);
-	int proximity = stack->count / 2;
-	char *instruction;
-    unsigned int operation_count = 0;
-	
-	if (node_index >= proximity)
-		instruction = "ra";
-	else
-		instruction = "rra";
-	while (stack->first_node == node)
-		operation_count += execute_instruction(stack, NULL, instruction);
-    return operation_count;
-}
-
-t_node *smallest_number(t_stack *stack)
-{
-	t_node *smallest_number_node = NULL;
-	t_node *node = stack->first_node;
-
-	while (node)
-	{
-		if (!smallest_number_node || smallest_number_node->data > node->data)
-			smallest_number_node = node;
-		node = node->next;
-	}
-	return smallest_number_node;
-}
 
 int move_smallest_numbers_to_stack_b(t_push_swap *program)
 {

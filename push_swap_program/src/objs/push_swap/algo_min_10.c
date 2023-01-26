@@ -6,39 +6,21 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:09:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/25 21:25:59 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/26 20:43:06 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../../../../libft/includes/libft.h"
 
-t_node *stack_get_node_at(t_stack *stack, unsigned int index_pos)
+#define DIVISOR 4
+
+typedef struct s_data_holder
 {
-	unsigned int index = 0;
-	t_node *node = stack->first_node;
-
-	while (index != index_pos)
-	{
-		node = node->next;
-		index++;		
-	}
-	return node;
-}
-
-t_node *biggest_number(t_stack *stack)
-{
-	t_node *node = stack->first_node;
-	t_node *biggest_number_node = NULL;
-
-	while (node)
-	{
-		if (!biggest_number_node || biggest_number_node->data < node->data)
-			biggest_number_node = node;
-		node = node->next;
-	}
-	return biggest_number_node;
-}
+	t_node *selected_node;
+	t_node *biggest_number_node;
+	unsigned int selected_node_index;
+} t_data_holder;
 
 unsigned int soft_sort(t_stack *from_stack, t_stack *to_stack)
 {
@@ -54,7 +36,7 @@ unsigned int soft_sort(t_stack *from_stack, t_stack *to_stack)
 	return operation_count;
 }
 
-unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_node *selected_note, t_node *biggest_number_node, int quotient_index)
+unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_data_holder data_holder)
 {
 	t_node *node = NULL;
 	unsigned int operation_count = 0;
@@ -66,7 +48,7 @@ unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_node
 		dirty = 0;
 		while (node)
 		{
-			if (node->data <= selected_note->data && node != biggest_number_node)
+			if (node->data <= data_holder.selected_node->data && node != data_holder.biggest_number_node)
 			{
 				operation_count += move_to_top();
 				operation_count += execute_instruction(from_stack, to_stack, "pb");
@@ -78,11 +60,11 @@ unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_node
 	}
 	if (from_stack->count > 1)
 	{
-		if (from_stack->count <= quotient_index)
-			selected_note = from_stack->first_node;
+		if (from_stack->count <= data_holder.selected_node_index)
+			data_holder.selected_node = from_stack->first_node;
 		else
-			selected_note = stack_get_node_at(from_stack, quotient_index);
-		operation_count += rough_sort_recursive(from_stack, to_stack, from_stack->last_node, selected_note, quotient_index);
+			data_holder.selected_node = stack_get_node_at(from_stack, data_holder.selected_node_index);
+		operation_count += rough_sort_recursive(from_stack, to_stack, data_holder);
 		
 	}
 	return operation_count;
@@ -91,12 +73,12 @@ unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_node
 // the key is finding the biggest number and left it at stack a
 int rough_sort(t_stack *from_stack, t_stack *to_stack)
 {
-	int divisor = 4;
-	int quotient_index = from_stack->count / 4;
-	t_node *biggest_number_node = biggest_number(from_stack);
-	t_node *selected_node = stack_get_node_at(from_stack, quotient_index);
+	t_data_holder data_holder;
+	data_holder.selected_node_index = from_stack->count / DIVISOR;
+	data_holder.biggest_number_node = biggest_number(from_stack);
+	data_holder.selected_node = stack_get_node_at(from_stack, data_holder.selected_node_index);
 
-	return rough_sort_recursive(from_stack, to_stack, selected_node, biggest_number_node, quotient_index);
+	return rough_sort_recursive(from_stack, to_stack, data_holder);
 }
 
 int algo_min_10(t_push_swap *program)
