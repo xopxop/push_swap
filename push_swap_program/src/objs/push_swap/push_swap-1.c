@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:45:41 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/16 20:22:35 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/26 23:35:33 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	push_swap_constructor(t_push_swap *program, char **argv)
 	if (!program->stack_a)
 		return (CONSTRUCTOR_FAILED);
 	program->stack_b = new_stack(NULL);
+	program->range->biggest_number_node = stack_get_biggest_number_node(program->stack_a);
+	program->range->smallest_number_node = stack_get_smallest_number_node(program->stack_a);
 	return (CONSTRUCTOR_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:09:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/26 20:43:06 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/26 23:39:26 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 #include "../../../../libft/includes/libft.h"
 
 #define DIVISOR 4
-
-typedef struct s_data_holder
-{
-	t_node *selected_node;
-	t_node *biggest_number_node;
-	unsigned int selected_node_index;
-} t_data_holder;
 
 unsigned int soft_sort(t_stack *from_stack, t_stack *to_stack)
 {
@@ -73,10 +66,8 @@ unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_data
 // the key is finding the biggest number and left it at stack a
 int rough_sort(t_stack *from_stack, t_stack *to_stack)
 {
-	t_data_holder data_holder;
-	data_holder.selected_node_index = from_stack->count / DIVISOR;
-	data_holder.biggest_number_node = biggest_number(from_stack);
-	data_holder.selected_node = stack_get_node_at(from_stack, data_holder.selected_node_index);
+	int selected_node_index = from_stack->count / DIVISOR;
+	t_node *selected_node = stack_get_node_at(from_stack, data_holder.selected_node_index);
 
 	return rough_sort_recursive(from_stack, to_stack, data_holder);
 }

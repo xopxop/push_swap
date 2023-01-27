@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:21 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/29 15:57:03 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/26 23:34:40 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_stack	*new_stack(char **argv);
 t_stack	*stack_destructor(t_stack *stack);
 t_node	*stack_pop(t_stack *stack);
 t_node	*stack_pop_top(t_stack *stack);
+t_node *stack_get_biggest_number_node(t_stack *stack);
+t_node *stack_get_smallest_number_node(t_stack *stack);
 void	stack_push(t_stack *stack, t_node *node);
 void	stack_push_top(t_stack *stack, t_node *node);
 void	stack_swap(t_stack *stack);

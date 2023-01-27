@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:18:08 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/16 20:18:25 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 14:29:19 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,27 @@
 # define PUSH_SWAP_H
 # include "../../../../shared-objs/stack/stack.h"
 
-typedef struct s_push_swap
+typedef struct s_important_data
+{
+
+} 
+
+typedef struct s_data
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	t_node *biggest_number_node;
+	t_node *smallest_number_node;
+} t_data;
+
+typedef struct s_range
+{
+
+} t_range;
+
+typedef struct s_push_swap
+{
+	t_push_swap_option
 }	t_push_swap;
 
 int			push_swap_constructor(t_push_swap *program, char **argv);
