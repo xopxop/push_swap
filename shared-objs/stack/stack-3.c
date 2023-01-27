@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:42:10 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/29 12:04:24 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 17:12:15 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_stack	*stack_destructor(t_stack *stack)
 			free(node);
 		}
 	}
+	free(stack->name);
 	free(stack);
 	return (NULL);
 }

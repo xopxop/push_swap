@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:32:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/26 20:47:23 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 18:27:35 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define B_ONLY 2
 #define BOTH 3
 
-void	do_swap(t_stack *stack_a, t_stack *stack_b, int op)
+unsigned int do_swap(t_stack *stack_a, t_stack *stack_b, int op)
 {
 	if (op == A_ONLY)
 	{
@@ -34,9 +34,10 @@ void	do_swap(t_stack *stack_a, t_stack *stack_b, int op)
 		do_swap(stack_a, NULL, A_ONLY);
 		do_swap(NULL, stack_b, B_ONLY);
 	}
+	return (1);
 }
 
-void	do_push(t_stack *stack_a, t_stack *stack_b, int op)
+unsigned int	do_push(t_stack *stack_a, t_stack *stack_b, int op)
 {
 	if (op == A_ONLY)
 	{
@@ -48,9 +49,10 @@ void	do_push(t_stack *stack_a, t_stack *stack_b, int op)
 		if (stack_a->count > 0)
 			stack_push_top(stack_b, stack_pop_top(stack_a));
 	}
+	return (1);
 }
 
-void	do_rotate(t_stack *stack_a, t_stack *stack_b, int op)
+unsigned int	do_rotate(t_stack *stack_a, t_stack *stack_b, int op)
 {
 	if (op == A_ONLY)
 	{
@@ -67,9 +69,10 @@ void	do_rotate(t_stack *stack_a, t_stack *stack_b, int op)
 		do_rotate(stack_a, stack_b, A_ONLY);
 		do_rotate(stack_a, stack_b, B_ONLY);
 	}
+	return (1);
 }
 
-void	do_reverse_rotate(t_stack *stack_a, t_stack *stack_b, int op)
+unsigned int	do_reverse_rotate(t_stack *stack_a, t_stack *stack_b, int op)
 {
 	if (op == A_ONLY)
 	{
@@ -86,30 +89,44 @@ void	do_reverse_rotate(t_stack *stack_a, t_stack *stack_b, int op)
 		do_reverse_rotate(stack_a, stack_b, A_ONLY);
 		do_reverse_rotate(stack_a, stack_b, B_ONLY);
 	}
+	return (1);
 }
 
-void	execute_instruction(t_stack *stack_a, t_stack *stack_b, char *command)
+unsigned int	execute_instruction(t_stack *stack_a, t_stack *stack_b, char *command)
 {
 	if (!ft_strcmp(command, "sa"))
-		do_swap(stack_a, stack_b, A_ONLY);
+		return do_swap(stack_a, stack_b, A_ONLY);
 	else if (!ft_strcmp(command, "sb"))
-		do_swap(stack_a, stack_b, B_ONLY);
+		return do_swap(stack_a, stack_b, B_ONLY);
 	else if (!strcmp(command, "ss"))
-		do_swap(stack_a, stack_b, BOTH);
+		return do_swap(stack_a, stack_b, BOTH);
 	else if (!strcmp(command, "pa"))
-		do_push(stack_a, stack_b, A_ONLY);
+		return do_push(stack_a, stack_b, A_ONLY);
 	else if (!strcmp(command, "pb"))
-		do_push(stack_a, stack_b, B_ONLY);
+		return do_push(stack_a, stack_b, B_ONLY);
 	else if (!strcmp(command, "ra"))
-		do_rotate(stack_a, stack_b, A_ONLY);
+		return do_rotate(stack_a, stack_b, A_ONLY);
 	else if (!strcmp(command, "rb"))
-		do_rotate(stack_a, stack_b, B_ONLY);
+		return do_rotate(stack_a, stack_b, B_ONLY);
 	else if (!strcmp(command, "rr"))
-		do_rotate(stack_a, stack_b, BOTH);
+		return do_rotate(stack_a, stack_b, BOTH);
 	else if (!strcmp(command, "rra"))
-		do_reverse_rotate(stack_a, stack_b, A_ONLY);
+		return do_reverse_rotate(stack_a, stack_b, A_ONLY);
 	else if (!strcmp(command, "rrb"))
-		do_reverse_rotate(stack_a, stack_b, B_ONLY);
+		return do_reverse_rotate(stack_a, stack_b, B_ONLY);
 	else if (!strcmp(command, "rrr"))
-		do_reverse_rotate(stack_a, stack_b, BOTH);
+		return do_reverse_rotate(stack_a, stack_b, BOTH);
+	return (0);
+}
+
+unsigned int	execute_instruction_wrapper(t_data *data, t_config *config, char *instruction)
+{
+	unsigned int operation_count = execute_instruction(data->stack_a, data->stack_b, instruction);
+	// if (config)
+	// {
+		
+	// }
+	// else
+		ft_putendl(instruction);
+	return operation_count;
 }

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.h                                           :+:      :+:    :+:   */
+/*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 12:35:19 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:01:55 by dthan            ###   ########.fr       */
+/*   Created: 2023/01/27 18:28:47 by dthan             #+#    #+#             */
+/*   Updated: 2023/01/27 19:09:07 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HELPER_H
-# define HELPER_H
-#include "../shared-objs/data/data.h"
+#include "../stack/stack.h"
+#include <stdlib.h>
 
-void	execute_instruction(t_stack *stack_a, t_stack *stack_b, char *command);
-unsigned int	execute_instruction_wrapper(t_data *data, t_config *config, char *instruction);
-void	print_state(t_stack *stack_a, t_stack *stack_b, char *instruction);
-#endif
+typedef struct s_data
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+}   t_data;
+
+t_data	*new_data(char **argv);
+t_data	*data_destructor(t_data *data);

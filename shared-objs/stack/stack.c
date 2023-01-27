@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:44 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/16 20:31:14 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 17:11:57 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	stack_constructor_simple(t_stack *stack)
 	stack->first_node = NULL;
 	stack->last_node = NULL;
 	stack->count = 0;
+	stack->name = ft_strdup("b");
 	return (CONSTRUCTOR_SUCCESS);
 }
 
@@ -63,6 +64,7 @@ int	stack_constructor_complex(t_stack *stack, char **argv)
 	stack->first_node = NULL;
 	stack->last_node = NULL;
 	stack->count = 0;
+	stack->name = ft_strdup("a");
 	while (temp[i])
 	{
 		if (is_number(temp[i]) && !is_dup(temp[i], stack->first_node))

@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:09:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/26 23:39:26 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:20:20 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 
 #define DIVISOR 4
 
-unsigned int soft_sort(t_stack *from_stack, t_stack *to_stack)
+unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
 {
-	t_node *biggest_number_node = NULL;
+	t_node *local_biggest_number_node = NULL;
 	unsigned int operation_count = 0;
 
-	while (from_stack->count == 0)
+	while (program->data->stack_b->count == 0)
 	{
-		biggest_number_node = biggest_number(from_stack);
-		operation_count += move_to_top(from_stack, biggest_number_node);
-		operation_count += execute_instruction(from_stack, to_stack, "pa");
+		local_biggest_number_node = stack_get_biggest_number_node(program->data->stack_b);
+		operation_count += move_node_to_top(program->data->stack_b, local_biggest_number_node);
+		operation_count += execute_instruction(program->data->stack_a, program->data->stack_b, "pa");
 	}
 	return operation_count;
 }
 
-unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_data_holder data_holder)
+unsigned int rough_sort_stack_b_recursive(t_push_swap *program, t_node *selected_node, unsigned int selected_node_index)
 {
 	t_node *node = NULL;
 	unsigned int operation_count = 0;
@@ -37,44 +37,43 @@ unsigned int rough_sort_recursive(t_stack *from_stack, t_stack *to_stack, t_data
 
 	while (!dirty)
 	{
-		node = from_stack->first_node;
+		node = program->data->stack_a->first_node;
 		dirty = 0;
 		while (node)
 		{
-			if (node->data <= data_holder.selected_node->data && node != data_holder.biggest_number_node)
+			if (node->data <= selected_node->data && node != program->global_biggest_number_node)
 			{
-				operation_count += move_to_top();
-				operation_count += execute_instruction(from_stack, to_stack, "pb");
+				operation_count += move_node_to_top(program->data->stack_a, node);
+				operation_count += execute_instruction(program->data->stack_a, program->data->stack_b, "pb");
 				dirty = 1;
 				break;
 			}
 			node = node->next;			
 		}
 	}
-	if (from_stack->count > 1)
+	if (program->data->stack_a->count > 1)
 	{
-		if (from_stack->count <= data_holder.selected_node_index)
-			data_holder.selected_node = from_stack->first_node;
+		if (program->data->stack_a->count <= selected_node_index - 1)
+			selected_node = program->data->stack_a->first_node;
 		else
-			data_holder.selected_node = stack_get_node_at(from_stack, data_holder.selected_node_index);
-		operation_count += rough_sort_recursive(from_stack, to_stack, data_holder);
+			selected_node = stack_get_node_at(program->data->stack_a, selected_node_index);
+		operation_count += rough_sort_stack_b_recursive(program, selected_node, selected_node_index);
 		
 	}
 	return operation_count;
 }
 
-// the key is finding the biggest number and left it at stack a
-int rough_sort(t_stack *from_stack, t_stack *to_stack)
+int move_all_numbers_to_stack_b_except_the_biggest_number(t_push_swap *program)
 {
-	int selected_node_index = from_stack->count / DIVISOR;
-	t_node *selected_node = stack_get_node_at(from_stack, data_holder.selected_node_index);
+	unsigned int selected_node_index = program->data->stack_a->count / DIVISOR;
+	t_node *selected_node = stack_get_node_at(program->data->stack_a, selected_node_index);
 
-	return rough_sort_recursive(from_stack, to_stack, data_holder);
+	return rough_sort_recursive(program, selected_node, selected_node_index);
 }
 
 int algo_min_10(t_push_swap *program)
 {
-	t_stack *stack_a = program->stack_a;
-	t_stack *stack_b = program->stack_b;
-	return rough_sort(stack_a, stack_b) + soft_sort(stack_b, stack_a);
+	unsigned int operation_count_step_1 = move_all_numbers_to_stack_b_except_the_biggest_number(program);
+	unsigned int operation_count_step_2 = move_back_all_numbers_to_stack_a(program);
+	return operation_count_step_1 + operation_count_step_2;
 }

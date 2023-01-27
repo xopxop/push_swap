@@ -6,21 +6,68 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 20:42:03 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/26 23:32:23 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:15:05 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_node *stack_get_node_at(t_stack *stack, unsigned int index_pos)
-{
-	unsigned int index = 0;
-	t_node *node = stack->first_node;
+#include "push_swap.h"
 
-	while (index != index_pos)
+int can_swap(t_stack *stack, int order)
+{
+	if (stack->count > 1)
 	{
-		node = node->next;
-		index++;		
+		if (order == ASCENDING)
+		{
+			if (stack->first_node->data > stack->first_node->next->data)
+				return (1);
+		}
+		else if (order == DESCENDING)
+		{
+			if (stack->first_node->data < stack->first_node->next->data)
+				return (1);
+		}
 	}
-	return node;
+	return (0);
+}
+
+int can_rotate(t_stack *stack, int order)
+{
+	if (stack->count > 2)
+	{
+		if (order == ASCENDING)
+		{
+			if (stack->first_node->data > stack->first_node->next->data && \
+			stack->first_node->data > stack->last_node->data)
+				return (1);
+		}
+		else if (order == DESCENDING)
+		{
+			if (stack->first_node->data < stack->first_node->next->data && \
+			stack->first_node->data < stack->last_node->data)
+				return (1);
+		}
+	}
+	return (0);
+}
+
+int	can_reverse_rotate(t_stack *stack, int order)
+{
+	if (stack->count > 2)
+	{
+		if (order == ASCENDING)
+		{
+			if (stack->first_node->data > stack->last_node->data && \
+			stack->first_node->data < stack->first_node->next->data)
+				return (1);
+		}
+		else if (order == DESCENDING)
+		{
+			if (stack->first_node->data < stack->last_node->data && \
+			stack->first_node->data > stack->first_node->next->data)
+				return (1);
+		}
+	}
+	return (0);
 }
 
 unsigned int move_node_to_top(t_stack *stack, t_node *node)

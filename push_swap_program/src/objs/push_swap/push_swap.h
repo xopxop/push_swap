@@ -6,40 +6,34 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:18:08 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 14:29:19 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:14:59 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "../../../../shared-objs/stack/stack.h"
+# include "../../../../shared-objs/data/data.h"
+#define ASCENDING 0
+#define DESCENDING 1
 
-typedef struct s_important_data
+typedef struct s_config
 {
-
-} 
-
-typedef struct s_data
-{
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_node *biggest_number_node;
-	t_node *smallest_number_node;
-} t_data;
-
-typedef struct s_range
-{
-
-} t_range;
+	const int colour_the_last_operation;
+	const int display_stacks;
+} t_config;
 
 typedef struct s_push_swap
 {
-	t_push_swap_option
+	t_data *data;
+	t_config *config;
+	const t_node *global_biggest_number_node;
+	const t_node *global_smallest_number_node;
 }	t_push_swap;
 
 int			push_swap_constructor(t_push_swap *program, char **argv);
 t_push_swap	*push_swap_destructor(t_push_swap *program);
 t_push_swap	*new_push_swap(char **argv);
-void		push_swap_run(t_push_swap *program);
+unsigned int push_swap_run(t_push_swap *program);
+unsigned int move_node_to_top(t_stack *stack, t_node *node);
 
 #endif
