@@ -6,16 +6,15 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:09:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:20:20 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:51:47 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "../../../../libft/includes/libft.h"
+#include "lib.h"
 
 #define DIVISOR 4
 
-unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
+static unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
 {
 	t_node *local_biggest_number_node = NULL;
 	unsigned int operation_count = 0;
@@ -29,7 +28,7 @@ unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
 	return operation_count;
 }
 
-unsigned int rough_sort_stack_b_recursive(t_push_swap *program, t_node *selected_node, unsigned int selected_node_index)
+static unsigned int rough_sort_stack_b_recursive(t_push_swap *program, t_node *selected_node, unsigned int selected_node_index)
 {
 	t_node *node = NULL;
 	unsigned int operation_count = 0;
@@ -63,15 +62,15 @@ unsigned int rough_sort_stack_b_recursive(t_push_swap *program, t_node *selected
 	return operation_count;
 }
 
-int move_all_numbers_to_stack_b_except_the_biggest_number(t_push_swap *program)
+static unsigned int move_all_numbers_to_stack_b_except_the_biggest_number(t_push_swap *program)
 {
 	unsigned int selected_node_index = program->data->stack_a->count / DIVISOR;
 	t_node *selected_node = stack_get_node_at(program->data->stack_a, selected_node_index);
 
-	return rough_sort_recursive(program, selected_node, selected_node_index);
+	return rough_sort_stack_b_recursive(program, selected_node, selected_node_index);
 }
 
-int algo_min_10(t_push_swap *program)
+unsigned int algo_min_10(t_push_swap *program)
 {
 	unsigned int operation_count_step_1 = move_all_numbers_to_stack_b_except_the_biggest_number(program);
 	unsigned int operation_count_step_2 = move_back_all_numbers_to_stack_a(program);

@@ -6,11 +6,12 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:14:04 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:44:59 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "../../lib/lib.h"
 
 // rotate: first > next && first < last (condition n > 2)
 // reverse rotate: first < next && first > last (condition n > 2)
@@ -21,6 +22,9 @@
 
 int	push_swap_constructor(t_push_swap *program, char **argv)
 {
+	// create config later
+	program->config = NULL;
+	//
 	program->data = new_data(argv);
 	if (!program->data)
 		return (CONSTRUCTOR_FAILED);

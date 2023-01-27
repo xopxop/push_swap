@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:32:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 18:27:35 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:23:53 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ unsigned int	execute_instruction(t_stack *stack_a, t_stack *stack_b, char *comma
 		return do_reverse_rotate(stack_a, stack_b, BOTH);
 	return (0);
 }
-
+/*
 unsigned int	execute_instruction_wrapper(t_data *data, t_config *config, char *instruction)
 {
 	unsigned int operation_count = execute_instruction(data->stack_a, data->stack_b, instruction);
@@ -130,3 +130,4 @@ unsigned int	execute_instruction_wrapper(t_data *data, t_config *config, char *i
 		ft_putendl(instruction);
 	return operation_count;
 }
+*/

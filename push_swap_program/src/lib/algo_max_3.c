@@ -6,14 +6,13 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:05:12 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 17:15:52 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:28:39 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "../../../../libft/includes/libft.h"
+#include "lib.h"
 
-int algo_max_3(t_push_swap *program)
+unsigned int algo_max_3(t_push_swap *program)
 {
 	t_stack *stack_a = program->data->stack_a;
 	char *instruction = NULL;

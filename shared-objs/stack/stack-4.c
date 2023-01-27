@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 23:30:03 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 17:45:34 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:43:18 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,19 @@ t_node *stack_get_node_at(t_stack *stack, unsigned int index_pos)
 		index++;		
 	}
 	return node;
+}
+
+unsigned int stack_find_index(t_stack *stack, t_node *look_up_node)
+{
+	unsigned int index = 0;
+	t_node *node = stack->first_node;
+
+	while (node)
+	{
+		if (node == look_up_node)
+			break;
+		index++;
+		node = node->next;
+	}
+	return index;
 }

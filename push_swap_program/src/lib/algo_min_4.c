@@ -6,14 +6,13 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:22:24 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 17:31:22 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:51:38 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "../../../../libft/includes/libft.h"
+#include "lib.h"
 
-unsigned int move_smallest_numbers_to_stack_b(t_push_swap *program)
+static unsigned int move_smallest_numbers_to_stack_b(t_push_swap *program)
 {
 	t_stack *stack_a = program->data->stack_a;
 	t_stack *stack_b = program->data->stack_b;
@@ -22,14 +21,14 @@ unsigned int move_smallest_numbers_to_stack_b(t_push_swap *program)
 
 	while (stack_a->count > 3)
 	{
-		local_smallest_number_node = stack_get_smallest_number(stack_a);
-		operation_count += move_to_top(stack_a, local_smallest_number_node);
+		local_smallest_number_node = stack_get_smallest_number_node(stack_a);
+		operation_count += move_node_to_top(stack_a, local_smallest_number_node);
 		operation_count += execute_instruction(stack_a, stack_b, "pb");
 	}
 	return operation_count;    
 }
 
-unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
+static unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
 {
 	unsigned int operation_count = 0;
 	t_stack *stack_a = program->data->stack_a;

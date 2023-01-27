@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:28:43 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:08:53 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:45:23 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_data	*new_data(char **argv)
 	t_data *data;
 
 	data = (t_data*)malloc(sizeof(t_data));
-	if (data_consturctor(data, argv) == CONSTRUCTOR_FAILED)
+	if (data_constructor(data, argv) == CONSTRUCTOR_FAILED)
 		return (data_destructor(data));
 	return (data);
 }

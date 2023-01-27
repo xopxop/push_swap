@@ -6,11 +6,11 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 20:42:03 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:15:05 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/27 19:43:47 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "lib.h"
 
 int can_swap(t_stack *stack, int order)
 {
@@ -72,7 +72,7 @@ int	can_reverse_rotate(t_stack *stack, int order)
 
 unsigned int move_node_to_top(t_stack *stack, t_node *node)
 {
-	int node_index = get_index(stack, node);
+	int node_index = stack_find_index(stack, node);
 	int proximity = stack->count / 2;
 	char *instruction;
     unsigned int operation_count = 0;

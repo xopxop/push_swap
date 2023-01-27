@@ -29,7 +29,12 @@
 		"streambuf": "c",
 		"tuple": "c",
 		"chrono": "c",
-		"node.h": "c"
+		"node.h": "c",
+		"lib.h": "c",
+		"push_swap.h": "c",
+		"libft.h": "c",
+		"helper.h": "c",
+		"data.h": "c"
 	},
 	//"C_Cpp.errorSquiggles": "disabled"
 }
