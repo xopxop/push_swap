@@ -34,7 +34,12 @@
 		"push_swap.h": "c",
 		"libft.h": "c",
 		"helper.h": "c",
-		"data.h": "c"
+		"data.h": "c",
+		"ft_stdio.h": "c",
+		"__tree": "c",
+		"map": "c",
+		"set": "c",
+		"unordered_set": "c"
 	},
 	//"C_Cpp.errorSquiggles": "disabled"
 }

@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:05:12 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:28:39 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 15:11:51 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ unsigned int algo_max_3(t_push_swap *program)
 			instruction = ft_strjoin("rr", stack_a->name);
 		else
 			instruction = ft_strjoin("s", stack_a->name);
-		operation_count += execute_instruction(stack_a, NULL, instruction);
+		operation_count += execute_instruction(program->data, instruction);
 		free(instruction);
 	}
 	return (operation_count);

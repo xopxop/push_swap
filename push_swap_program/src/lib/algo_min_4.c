@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:22:24 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:51:38 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 15:28:28 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 static unsigned int move_smallest_numbers_to_stack_b(t_push_swap *program)
 {
-	t_stack *stack_a = program->data->stack_a;
-	t_stack *stack_b = program->data->stack_b;
 	t_node *local_smallest_number_node = NULL;
 	int operation_count = 0;
 
-	while (stack_a->count > 3)
+	while (program->data->stack_a->count > 3)
 	{
-		local_smallest_number_node = stack_get_smallest_number_node(stack_a);
-		operation_count += move_node_to_top(stack_a, local_smallest_number_node);
-		operation_count += execute_instruction(stack_a, stack_b, "pb");
+		local_smallest_number_node = stack_get_smallest_number_node(program->data->stack_a);
+		if (program->data->stack_a->first_node != local_smallest_number_node)
+			operation_count += move_node_to_top(program->data, program->data->stack_a, local_smallest_number_node);
+		operation_count += execute_instruction(program->data, "pb");
 	}
 	return operation_count;    
 }
@@ -31,11 +30,9 @@ static unsigned int move_smallest_numbers_to_stack_b(t_push_swap *program)
 static unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
 {
 	unsigned int operation_count = 0;
-	t_stack *stack_a = program->data->stack_a;
-	t_stack *stack_b = program->data->stack_b;
 
-	while (stack_b->count)
-		operation_count += execute_instruction(stack_a, stack_b, "pa");
+	while (program->data->stack_b->count)
+		operation_count += execute_instruction(program->data, "pa");
 	return operation_count;
 }
 

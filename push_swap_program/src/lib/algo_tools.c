@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 20:42:03 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:43:47 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 15:28:01 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,19 @@ int	can_reverse_rotate(t_stack *stack, int order)
 	return (0);
 }
 
-unsigned int move_node_to_top(t_stack *stack, t_node *node)
+unsigned int move_node_to_top(t_data *data, t_stack *stack, t_node *node)
 {
 	int node_index = stack_find_index(stack, node);
 	int proximity = stack->count / 2;
 	char *instruction;
-    unsigned int operation_count = 0;
-	
+	unsigned int operation_count = 0;
+
 	if (node_index >= proximity)
-		instruction = "ra";
+		instruction = ft_strjoin("r", stack->name);
 	else
-		instruction = "rra";
+		instruction = ft_strjoin("rr", stack->name);
 	while (stack->first_node == node)
-		operation_count += execute_instruction(stack, NULL, instruction);
-    return operation_count;
+		operation_count += execute_instruction(data, instruction);
+	free(instruction);
+	return operation_count;
 }

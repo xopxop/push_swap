@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:18:08 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:14:59 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 15:18:30 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ int			push_swap_constructor(t_push_swap *program, char **argv);
 t_push_swap	*push_swap_destructor(t_push_swap *program);
 t_push_swap	*new_push_swap(char **argv);
 unsigned int push_swap_run(t_push_swap *program);
-unsigned int move_node_to_top(t_stack *stack, t_node *node);
 
 #endif

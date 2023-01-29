@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:14:14 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/23 21:44:38 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/28 16:27:23 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ int	main(int argc, char **argv)
 {
 	t_push_swap *push_swap;
 
-	if (argc > 1)
+	(void)argc;
+	push_swap = new_push_swap(&argv[1]);
+	if (push_swap)
 	{
-		push_swap = new_push_swap(&argv[1]);
-		if (push_swap)
-		{
-			ft_printf("Total: %d\n", push_swap_run(push_swap));
-			push_swap_destructor(push_swap);
-		}
+		ft_printf("Total: %d\n", push_swap_run(push_swap));
+		push_swap_destructor(push_swap);
+		return (1);
 	}
-	return (1);
+	return (0);
 }

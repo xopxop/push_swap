@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 21:09:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:51:47 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 15:29:52 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ static unsigned int move_back_all_numbers_to_stack_a(t_push_swap *program)
 	while (program->data->stack_b->count == 0)
 	{
 		local_biggest_number_node = stack_get_biggest_number_node(program->data->stack_b);
-		operation_count += move_node_to_top(program->data->stack_b, local_biggest_number_node);
-		operation_count += execute_instruction(program->data->stack_a, program->data->stack_b, "pa");
+		if (program->data->stack_b->first_node != local_biggest_number_node)
+			operation_count += move_node_to_top(program->data, program->data->stack_b, local_biggest_number_node);
+		operation_count += execute_instruction(program->data, "pa");
 	}
 	return operation_count;
 }
@@ -42,8 +43,9 @@ static unsigned int rough_sort_stack_b_recursive(t_push_swap *program, t_node *s
 		{
 			if (node->data <= selected_node->data && node != program->global_biggest_number_node)
 			{
-				operation_count += move_node_to_top(program->data->stack_a, node);
-				operation_count += execute_instruction(program->data->stack_a, program->data->stack_b, "pb");
+				if (program->data->stack_a->first_node != node)
+					operation_count += move_node_to_top(program->data, program->data->stack_a, node);
+				operation_count += execute_instruction(program->data, "pb");
 				dirty = 1;
 				break;
 			}

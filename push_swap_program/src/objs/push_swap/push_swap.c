@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/27 19:44:59 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/28 15:13:22 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
 
-int	push_swap_constructor(t_push_swap *program, char **argv)
+int	push_swap_constructor(t_push_swap *program, char **input_list)
 {
 	// create config later
 	program->config = NULL;
 	//
-	program->data = new_data(argv);
+	program->data = new_data(input_list);
 	if (!program->data)
 		return (CONSTRUCTOR_FAILED);
 	program->global_biggest_number_node = stack_get_biggest_number_node(program->data->stack_a);
@@ -42,12 +42,12 @@ t_push_swap	*push_swap_destructor(t_push_swap *program)
 	return (NULL);
 }
 
-t_push_swap *new_push_swap(char **argv)
+t_push_swap *new_push_swap(char **input_list)
 {
 	t_push_swap *push_swap;
 
 	push_swap = (t_push_swap *)malloc(sizeof(t_push_swap));
-	if (push_swap_constructor(push_swap, argv) == CONSTRUCTOR_FAILED)
+	if (push_swap_constructor(push_swap, input_list) == CONSTRUCTOR_FAILED)
 		return (push_swap_destructor(push_swap));
 	return (push_swap);
 }
