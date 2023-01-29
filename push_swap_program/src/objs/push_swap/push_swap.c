@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/28 15:13:22 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 20:05:00 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ int	push_swap_constructor(t_push_swap *program, char **input_list)
 	if (!program->data)
 		return (CONSTRUCTOR_FAILED);
 	program->global_biggest_number_node = stack_get_biggest_number_node(program->data->stack_a);
+	if (program->data->stack_a->count > 1)
+		program->global_second_biggest_number_node = stack_get_closet_smaller_number_node(program->data->stack_a, program->global_biggest_number_node);
+	else
+		program->global_second_biggest_number_node = NULL;
+	if (program->data->stack_a->count > 2)
+		program->global_third_biggest_number_node = stack_get_closet_smaller_number_node(program->data->stack_a, program->global_second_biggest_number_node);
+	else
+		program->global_third_biggest_number_node = NULL;
 	program->global_smallest_number_node = stack_get_smallest_number_node(program->data->stack_a);
 	return (CONSTRUCTOR_SUCCESS);
 }
@@ -55,7 +63,7 @@ t_push_swap *new_push_swap(char **input_list)
 unsigned int push_swap_run(t_push_swap *program)
 {
 	if (program->data->stack_a->count > 9)
-		return algo_min_10(program);
+		return algo_min_10_2(program);
 	else if (program->data->stack_a->count > 3)
 		return algo_min_4(program);
 	return algo_max_3(program);

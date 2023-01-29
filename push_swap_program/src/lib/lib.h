@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 19:25:10 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/29 15:18:17 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 19:14:06 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,4 @@ unsigned int move_node_to_top(t_data *data, t_stack *stack, t_node *node);
 unsigned int algo_max_3(t_push_swap *program);
 unsigned int algo_min_4(t_push_swap *program);
 unsigned int algo_min_10(t_push_swap *program);
+unsigned int algo_min_10_2(t_push_swap *program);

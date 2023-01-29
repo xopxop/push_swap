@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:32:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/29 15:24:24 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:56:32 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void print_stacks(t_data *data)
 		max_rows--;
 	}
 	printf("- -\n%c %c\n", 'a', 'b');
-	sleep(1);
+	// sleep(1);
 }
 
 void print_data(t_data *data, char *instruction)

@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 20:42:03 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/29 15:28:01 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:56:23 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ unsigned int move_node_to_top(t_data *data, t_stack *stack, t_node *node)
 	char *instruction;
 	unsigned int operation_count = 0;
 
-	if (node_index >= proximity)
+	if (node_index <= proximity)
 		instruction = ft_strjoin("r", stack->name);
 	else
 		instruction = ft_strjoin("rr", stack->name);
-	while (stack->first_node == node)
+	while (stack->first_node != node)
 		operation_count += execute_instruction(data, instruction);
 	free(instruction);
 	return operation_count;

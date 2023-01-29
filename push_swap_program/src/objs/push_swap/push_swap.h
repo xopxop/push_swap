@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:18:08 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/29 15:18:30 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 17:07:11 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_push_swap
 	t_data *data;
 	t_config *config;
 	const t_node *global_biggest_number_node;
+	const t_node *global_second_biggest_number_node;
+	const t_node *global_third_biggest_number_node;
 	const t_node *global_smallest_number_node;
 }	t_push_swap;
 
