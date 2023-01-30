@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:32:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/29 16:56:32 by dthan            ###   ########.fr       */
+/*   Updated: 2023/01/29 23:51:14 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,12 +153,12 @@ void print_stacks(t_data *data)
 	{
 		if (stack_a->count >= max_rows)
 		{
-			printf("%*d", max_cols_stack_a, node_a->data);
+			printf("%*d ", max_cols_stack_a, node_a->data);
 			node_a = node_a->next;
 		}
 		else
 		{
-			printf("%*s", max_cols_stack_a, "");
+			printf("%*s ", max_cols_stack_a, "");
 		}
 		if (stack_b->count >= max_rows)
 		{
@@ -171,7 +171,7 @@ void print_stacks(t_data *data)
 		}
 		max_rows--;
 	}
-	printf("- -\n%c %c\n", 'a', 'b');
+	printf("-  -\n%c  %c\n", 'a', 'b');
 	// sleep(1);
 }
 
