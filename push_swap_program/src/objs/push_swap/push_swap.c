@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/30 00:03:42 by dthan            ###   ########.fr       */
+/*   Updated: 2023/02/28 21:29:25 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_push_swap *new_push_swap(char **input_list)
 unsigned int push_swap_run(t_push_swap *program)
 {
 	if (program->data->stack_a->count > 3)
-		return algo_min_10_2(program);
+		return algo_min_10_4(program);
 	else if (program->data->stack_a->count > 3)
 		return algo_min_4(program);
 	return algo_max_3(program);

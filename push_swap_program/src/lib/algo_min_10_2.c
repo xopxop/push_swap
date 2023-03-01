@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 18:15:11 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/30 00:09:40 by dthan            ###   ########.fr       */
+/*   Updated: 2023/02/26 16:53:58 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,33 @@
 unsigned int organize_stack_b(t_data *data, t_node *will_be_pushed_node)
 {
 	unsigned int operation_count = 0;
-	t_node *closet_bigger_number_node;
+	// t_node *closet_bigger_number_node;
+	t_node *closet_smaller_number_node;
 	t_node *local_biggest_number_node;
 	t_node *local_smallest_number_node;
 
-	if (data->stack_b->count > 1)
+	if (data->stack_b->count == 2)
+	{
+		if (data->stack_b->first_node->data < data->stack_b->first_node->next->data)
+			operation_count += execute_instruction(data, "sb");		
+	}
+	if (data->stack_b->count > 2)
 	{
 		local_smallest_number_node = stack_get_smallest_number_node(data->stack_b);
 		local_biggest_number_node = stack_get_biggest_number_node(data->stack_b);
-		closet_bigger_number_node = stack_get_closet_bigger_number_node(data->stack_b, will_be_pushed_node);
-		if (closet_bigger_number_node != local_biggest_number_node || closet_bigger_number_node != local_smallest_number_node)
-			operation_count += move_node_to_top(data, data->stack_b, closet_bigger_number_node);
+		// closet_bigger_number_node = stack_get_closet_bigger_number_node(data->stack_b, will_be_pushed_node);
+
+		if (will_be_pushed_node->data > local_biggest_number_node->data || will_be_pushed_node->data < local_smallest_number_node->data)
+			operation_count += move_node_to_top(data, data->stack_b, local_biggest_number_node);
+		else
+		{
+			closet_smaller_number_node = stack_get_closet_smaller_number_node(data->stack_b, will_be_pushed_node);
+			operation_count += move_node_to_top(data, data->stack_b, closet_smaller_number_node);
+		}
+
+
+		// if (closet_bigger_number_node != local_biggest_number_node || closet_bigger_number_node != local_smallest_number_node)
+		// 	operation_count += move_node_to_top(data, data->stack_b, closet_bigger_number_node);
 	}
 	return operation_count;	
 }
