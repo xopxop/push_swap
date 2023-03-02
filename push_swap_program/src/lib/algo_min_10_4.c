@@ -101,3 +101,15 @@ int is_optimized_rotate(t_stack *stack, int order)
 	if ()
 	return (0);
 }
+
+
+// move numbers to stack b with chunks
+//   ra - yes
+//   rra - yes
+//   sa - yes
+//   pb - no
+// left only 3
+// move back numbers in stack b to stack a
+//   rb, rrb, sb, pa
+
+// ss, rrr, rr
