@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 19:25:10 by dthan             #+#    #+#             */
-/*   Updated: 2023/02/28 21:29:38 by dthan            ###   ########.fr       */
+/*   Updated: 2023/03/20 17:08:19 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,4 @@ unsigned int algo_min_10(t_push_swap *program);
 unsigned int algo_min_10_2(t_push_swap *program);
 unsigned int algo_min_10_3(t_push_swap *program);
 unsigned int algo_min_10_4(t_push_swap *program);
+unsigned int algo_min_10_5(t_push_swap *program);
