@@ -6,37 +6,48 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:28:43 by dthan             #+#    #+#             */
-/*   Updated: 2023/01/29 15:23:31 by dthan            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:06:58 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
-#include "../../shared-lib/helper.h"
+#include "data-helper.h"
+#include "../../libft/includes/libft.h"
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
 
-int data_constructor(t_data *data, char **input_list)
+static int data_constructor(t_data *data, char **input_list)
 {
+	char **refined_input_list;
+
 	if (!*input_list)
 		return (CONSTRUCTOR_FAILED);
-	data->stack_a = new_stack(input_list);
+	refined_input_list = refine_input_list(input_list);	
+	data->stack_a = new_stack_object(refined_input_list, ft_arrayct(refined_input_list));
+	free(refined_input_list);
 	if (!data->stack_a)
 		return (CONSTRUCTOR_FAILED);
-	data->stack_b = new_stack(NULL);
-	print_data(data, NULL);
+	data->stack_b = new_stack_object(NULL, data->stack_a->size);
+	//print_data(data, NULL);
 	return (CONSTRUCTOR_SUCCESS);
 }
 
-t_data	*data_destructor(t_data *data)
+static t_data	*data_destructor(t_data *data)
 {
 	if (data->stack_a)
-		stack_destructor(data->stack_a);
+		delete_stack_object(data->stack_a);
 	if (data->stack_b)
-		stack_destructor(data->stack_b);
+		delete_stack_object(data->stack_b);
+	free(data);
 	return (NULL);
 }
 
-t_data	*new_data(char **input_list)
+void delete_data_object(t_data *data)
+{
+	data_destructor(data);
+}
+
+t_data	*new_data_object(char **input_list)
 {
 	t_data *data;
 

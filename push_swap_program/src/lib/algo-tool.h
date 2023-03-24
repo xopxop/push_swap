@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   algo-tool.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:02:10 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/21 14:20:13 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/24 11:54:55 by dthan             #+#    #+#             */
+/*   Updated: 2023/03/24 13:38:23 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
+#ifndef ALGO_TOOL_H
+# define ALGO_TOOL_H
+#include "../../../shared-objs/data/data.h"
+#include "../objs/move/move.h"
 
-typedef struct s_stack
-{
-	int *data;
-	const unsigned int size;
-	unsigned int length;
-	const char *name;
-} t_stack;
-
+int execute_the_best_move(t_data *data, t_move *move);
+t_move *find_the_best_move(t_data *data);
 
 #endif

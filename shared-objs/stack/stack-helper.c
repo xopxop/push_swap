@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node.c                                             :+:      :+:    :+:   */
+/*   stack-helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 18:25:10 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/29 11:42:37 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/23 17:09:38 by dthan             #+#    #+#             */
+/*   Updated: 2023/03/23 17:20:37 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "node.h"
-#include <stdlib.h>
 #include "../../libft/includes/libft.h"
+#include "stack.h"
 
-t_node	*new_node(char *data)
+int	is_number(char *argv)
 {
-	t_node	*node;
+	int	i;
 
-	node = (t_node *)malloc(sizeof(t_node));
-	node_constructor(node, data);
-	return (node);
-}
-
-int	node_constructor(t_node *node, char *data)
-{
-	node->data = ft_atoi(data);
-	node->next = NULL;
-	node->prev = NULL;
+	i = 0;
+	if (argv[i] == '-')
+		i++;
+	while (argv[i])
+		if (!ft_isdigit(argv[i++]))
+			return (0);
 	return (1);
 }
 
-t_node	*node_destructor(t_node *node)
+int	is_dup(char *argv, t_stack *stack)
 {
-	free(node);
-	return (NULL);
+	int	number = ft_atoi(argv);
+	int index = 0;
+
+	while (index < stack->length)
+	{
+		if (number == stack->data[index])
+			return (1);
+		index++;
+	}
+	return (0);
 }

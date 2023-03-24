@@ -11,9 +11,6 @@ LIB := -L$(LIBFT_DIR)/ -lft
 SHARED_DIR := ../shared-objs
 SHARED_FILES := $(shell find $(SHARED_DIR) -name '*.c')
 MATCHING_RULE_SHARED_FILE := $(addprefix $(BUILD_DIR)/,$(SHARED_FILES:%.c=%.o))
-SHARED_LIB_DIR := ../shared-lib
-SHARED_LIB_FILES := $(shell find $(SHARED_LIB_DIR) -name '*.c')
-MATCHING_RULE_SHARED_LIB_FILE := $(addprefix $(BUILD_DIR)/,$(SHARED_LIB_FILES:%.c=%.o))
 
 all: mkdirs $(PROGRAM)
 	@echo "$(PROGRAM) created"
@@ -24,8 +21,8 @@ mkdirs:
 $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $(BUILD_DIR)/$(notdir $@)
 
-$(PROGRAM): $(MATCHING_RULE) $(MATCHING_RULE_SHARED_FILE) $(MATCHING_RULE_SHARED_LIB_FILE)
-	$(CC) $(CFLAGS) $(shell find $(BUILD_DIR) -name '*.o') $(LIB) -o $@
+$(PROGRAM): $(MATCHING_RULE) $(MATCHING_RULE_SHARED_FILE)
+	$(CC) $(CFLAGS) $(BUILD_DIR)/*.o $(LIB) -o $@
 	
 clean:
 	rm -Rf $(BUILD_DIR)

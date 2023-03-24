@@ -39,7 +39,10 @@
 		"__tree": "c",
 		"map": "c",
 		"set": "c",
-		"unordered_set": "c"
+		"unordered_set": "c",
+		"__locale": "c",
+		"__string": "c",
+		"regex": "c"
 	},
 	//"C_Cpp.errorSquiggles": "disabled"
 }
