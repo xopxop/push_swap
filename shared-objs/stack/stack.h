@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:02:10 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 13:42:51 by dthan            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:29:48 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int stack_pop(t_stack *stack);
 void stack_add(t_stack *stack, int element);
 int	stack_reduce(t_stack *stack);
 void	stack_swap(t_stack *stack);
+int	stack_is_empty(t_stack *stack);
+int	stack_is_sorted_in_ascending_order(t_stack *stack);
 
 #endif

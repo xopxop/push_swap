@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:18:08 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 13:51:04 by dthan            ###   ########.fr       */
+/*   Updated: 2023/03/25 01:39:18 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 
 typedef struct s_config
 {
-	const int colour_the_last_operation;
-	const int display_stacks;
+	int colour_the_last_operation;
+	int display_stacks;
+	int read_and_write_from_file;
 } t_config;
 
 typedef struct s_push_swap

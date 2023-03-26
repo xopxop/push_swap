@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   data-printer.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 18:28:47 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 14:45:07 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/25 20:09:41 by dthan             #+#    #+#             */
+/*   Updated: 2023/03/25 20:30:41 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_H
-# define DATA_H
-#include "../stack/stack.h"
-#include <stdlib.h>
+#ifndef DATA_PRINTER_H
+# define DATA_PRINTER_H
+# include "data.h"
 
-typedef struct s_data
-{
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-}   t_data;
+typedef struct s_printer {
+	int max_cols_a;
+	int max_cols_b;
+	int rows;
+  t_data *data;
+  char *instruction;
+} t_printer;
 
-t_data	*new_data_object(char **argv);
-void delete_data_object(t_data *data);
-int	data_execute_instruction(t_data *data, char *command);
+t_printer *new_printer_object(t_data *data, char *instruction);
+void delete_printer_object(t_printer *obj);
+void printer_print(t_printer *printer);
 
 #endif

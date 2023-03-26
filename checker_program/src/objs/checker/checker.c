@@ -6,91 +6,77 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:24:55 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/28 11:30:40 by dthan            ###   ########.fr       */
+/*   Updated: 2023/03/24 16:56:38 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include <stddef.h>
 #include "../../../../libft/includes/libft.h"
+#include "checker-helper.h"
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
+#define CHECKER_VALIDATOR_PASSED 1
+#define CHECKER_VALIDATOR_FAILED 0
 
-t_checker	*new_checker(int argc, char **argv)
+int	checker_execute_instructions(t_checker *program)
 {
-	t_checker	*checker;
-
-	checker = (t_checker *)malloc(sizeof(t_checker));
-	if (checker_constructor(checker, argc, argv) == CONSTRUCTOR_FAILED)
-		return (checker_destructor(checker));
-	return (checker);
-}
-
-int	valid_instruction(char *instruction)
-{
-	const char	*valid_instructions[] = {
-		"sa", "sb", "ss", "pa", "pb", "ra", \
-		"rb", "rr", "rra", "rrb", "rrr", NULL
-	};
-	int			i;
+	int	i;
 
 	i = 0;
-	while (valid_instructions[i])
+	while (program->instructions[i])
+		data_execute_instruction(program->data, program->instructions[i++]);
+	if (stack_is_empty(program->data->stack_b) && stack_is_sorted_in_ascending_order(program->data->stack_a))
 	{
-		if (!ft_strcmp(instruction, valid_instructions[i]))
-			return (1);
-		i++;
+		ft_printf("OK\n");
+		return (CHECKER_VALIDATOR_PASSED);
 	}
-	return (0);
+	else
+	{
+		ft_dprintf(1, "KO\n");
+		return (CHECKER_VALIDATOR_FAILED);
+	}
 }
 
-char	**get_instructions(void)
+static int	checker_constructor(t_checker *program, char **argv)
 {
-	char	*instruction;
-	char	**instructions;
-
-	instructions = NULL;
-	while (get_next_line(1, &instruction))
-	{
-		if (valid_instruction(instruction))
-			instructions = ft_array_calloc(instructions, instruction);
-		else
-		{
-			ft_dprintf(1, "Error\n");
-			if (instructions)
-				ft_arraydel(instructions);
-			return (NULL);
-		}
-	}
-	return (instructions);
-}
-
-int	checker_constructor(t_checker *program, int argc, char **argv)
-{
-	program->stack_a = new_stack(argc, argv);
-	if (!program->stack_a)
+	program->data = new_data_object(argv);
+	if (!program->data)
 		return (CONSTRUCTOR_FAILED);
-	program->stack_b = new_stack(0, NULL);
 	program->instructions = get_instructions();
 	if (!program->instructions)
 		return (CONSTRUCTOR_FAILED);
 	return (CONSTRUCTOR_SUCCESS);
 }
 
-t_checker	*checker_destructor(t_checker *program)
+static t_checker	*checker_destructor(t_checker *program)
 {
-	int	increment;
+	int	index;
 
-	if (program->stack_a)
-		stack_destructor(program->stack_a);
-	if (program->stack_b)
-		stack_destructor(program->stack_b);
+	if (program->data)
+		delete_data_object(program->data);
 	if (program->instructions)
 	{
-		increment = 0;
-		while (program->instructions[increment])
-			free(program->instructions[increment++]);
+		index = 0;
+		while (program->instructions[index])
+			free(program->instructions[index++]);
 		free(program->instructions);
 	}
+	free(program);
 	return (NULL);
+}
+
+void delete_checker_object(t_checker *object)
+{
+	checker_destructor(object);
+}
+
+t_checker	*new_checker_object(char **argv)
+{
+	t_checker	*checker;
+
+	checker = (t_checker *)malloc(sizeof(t_checker));
+	if (checker_constructor(checker, argv) == CONSTRUCTOR_FAILED)
+		return (checker_destructor(checker));
+	return (checker);
 }
