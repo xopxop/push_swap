@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:53:38 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 05:35:40 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 06:49:23 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int	data_execute_instruction(t_data *data, char *command)
 {
+	ft_printf("%s\n", command);
 	return execute_instruction(data->stack_a, data->stack_b, command);
 }
 

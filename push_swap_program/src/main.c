@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:14:14 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 14:04:06 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 06:08:41 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(int argc, char **argv)
 	push_swap = new_push_swap_object(&argv[1]);
 	if (push_swap)
 	{
-		ft_printf("Total: %d\n", push_swap_run(push_swap));
+		push_swap_run(push_swap);
+		//ft_printf("Total: %d\n", push_swap_run(push_swap));
 		delete_push_swap_object(push_swap);
 		return (1);
 	}

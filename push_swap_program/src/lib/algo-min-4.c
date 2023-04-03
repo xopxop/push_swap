@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:15:10 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 14:12:23 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 06:47:49 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 static int organize_stack_a(t_data *data)
 {
-	int index_a = stack_get_smallest_number(data->stack_a);
+	int smallest_number = stack_get_smallest_number(data->stack_a);
+	int index_a = stack_get_index(data->stack_a, smallest_number);
 	int rotate_a = (index_a <= data->stack_a->length / 2) ? index_a : -(data->stack_a->length - index_a);
 	t_move *move = new_move_object(rotate_a, 0);
 	int operation_count = execute_the_best_move(data, move);
@@ -33,6 +34,7 @@ static int real_sort(t_push_swap *program)
 	{
 		best_move = find_the_best_move(program->data);
 		operation_count += execute_the_best_move(program->data, best_move);
+		operation_count	+= data_execute_instruction(program->data, "pa");
 		free(best_move);	
 	}
 	return operation_count;

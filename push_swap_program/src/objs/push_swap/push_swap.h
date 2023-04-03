@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:18:08 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/26 19:35:55 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 06:02:20 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 typedef struct s_push_swap
 {
 	t_data *data;
-	t_config *config;
 }	t_push_swap;
 
 t_push_swap	*new_push_swap_object(char **argv);

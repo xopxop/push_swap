@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:08:32 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 13:41:55 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 06:33:33 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int execute_the_best_move(t_data *data, t_move *move)
 		operation_count += execute_rotate_singular_stack(data, &move->rotate_a, data->stack_a->name);		
 	if (move->rotate_b != 0)
 		operation_count += execute_rotate_singular_stack(data, &move->rotate_b, data->stack_b->name);	
-	operation_count	+= data_execute_instruction(data, "pa");
 	return operation_count;
 }
 

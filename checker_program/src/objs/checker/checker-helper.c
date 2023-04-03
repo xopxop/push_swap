@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:42:47 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/27 05:03:37 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 06:40:15 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ static int	is_valid_instruction(char *instruction)
 	while (valid_instructions[i])
 	{
 		if (!ft_strcmp(instruction, valid_instructions[i]))
-			return (1);
+			return (1);			
 		i++;
 	}
+	ft_printf("%s\n", instruction);
 	return (0);
 }
 
@@ -37,13 +38,13 @@ char	**get_instructions(void)
 	char	**instructions;
 
 	instructions = NULL;
-	while (get_next_line(1, &instruction))
+	while (get_next_line(STDIN_FILENO, &instruction))
 	{
 		if (is_valid_instruction(instruction))
 			instructions = ft_array_calloc(instructions, instruction);
 		else
 		{
-			ft_dprintf(1, "Error\n");
+			ft_dprintf(STDERR_FILENO, "Error\n");
 			if (instructions)
 				ft_arraydel(instructions);
 			return (NULL);

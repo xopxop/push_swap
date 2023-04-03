@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 13:52:11 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 06:02:30 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 int	push_swap_constructor(t_push_swap *program, char **input_list)
 {
-	// create config later
-	program->config = NULL;
 	program->data = new_data_object(input_list);
 	if (!program->data)
 		return (CONSTRUCTOR_FAILED);
@@ -30,7 +28,6 @@ t_push_swap	*push_swap_destructor(t_push_swap *program)
 {
 	if (program->data)
 		delete_data_object(program->data);
-	// free config later
 	free(program);
 	return (NULL);
 }
