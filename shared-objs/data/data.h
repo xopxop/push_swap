@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:28:47 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 14:45:07 by dthan            ###   ########.fr       */
+/*   Updated: 2023/03/29 18:56:37 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DATA_H
 #include "../stack/stack.h"
 #include <stdlib.h>
+#include "execution-info.h"
 
 typedef struct s_data
 {
@@ -24,5 +25,7 @@ typedef struct s_data
 t_data	*new_data_object(char **argv);
 void delete_data_object(t_data *data);
 int	data_execute_instruction(t_data *data, char *command);
+void data_execute_instruction_extended(t_data *data, t_execution_info *exec_info, char *instruction);
+void set_exec_info(t_execution_info *exec_info, int ret, int *color);
 
 #endif

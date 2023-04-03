@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   printing-service-helper.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 18:25:06 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/26 19:39:39 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/29 18:06:28 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/03 05:41:32 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
-# include "../../../../shared-objs/data/data.h"
-# include "../../../../shared-objs/config/config.h"
+#ifndef PRINTING_SERVICE_HELPER_H
+#define PRINTING_SERVICE_HELPER_H
+#include "printing-service.h"
 
-typedef struct s_checker {
-	t_data *data;
-	char	**instructions;
-	t_config *config;
-}	t_checker;
-
-t_checker	*new_checker_object(char **argv);
-void delete_checker_object(t_checker *object);
-int	checker_execute_instructions(t_checker *program);
+void print_row(t_printing_row_info_service info);
+void reset_printing_service(t_printing_service *printing_service);
+void init_printing_service(t_printing_service *service, t_data *data, char *instruction, t_execution_info *exec_info, t_config *config);
 
 #endif

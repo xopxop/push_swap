@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:48:34 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 13:43:22 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 05:58:24 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static int	do_reverse_rotate(t_stack *stack_a, t_stack *stack_b, int op)
 		stack_push(stack_a, stack_reduce(stack_a));
 		stack_push(stack_b, stack_reduce(stack_b));
 	}
+	else
+		return (0);
 	return (1);
 }
 
@@ -93,7 +95,5 @@ int	execute_instruction(t_stack *stack_a, t_stack *stack_b, char *command)
 		return do_reverse_rotate(stack_a, stack_b, A_ONLY);
 	else if (!strcmp(command, "rrb"))
 		return do_reverse_rotate(stack_a, stack_b, B_ONLY);
-	else if (!strcmp(command, "rrr"))
-		return do_reverse_rotate(stack_a, stack_b, BOTH);
-	return (0);
+	return do_reverse_rotate(stack_a, stack_b, BOTH);
 }

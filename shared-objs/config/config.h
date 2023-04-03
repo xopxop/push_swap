@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data-printing-helper.h                             :+:      :+:    :+:   */
+/*   config.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 20:08:03 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/25 20:32:17 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/26 19:35:21 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/03 05:27:17 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_PRINTING_HELPER_H
-# define DATA_PRINTING_HELPER_H
-#include "data.h"
-#include "data-printer.h"
+#ifndef CONFIG_H
+# define CONFIG_H
 
-void	print_separator();
-void	print_instruction(char *instruction);
-void	print_data(t_printer printer);
+typedef struct s_config
+{
+	int colour_the_last_operation;
+	int display_stacks;
+	int read_and_write_from_file;
+} t_config;
+
+t_config *new_config_object(char ***argv);
+void delete_config_object(t_config *obj);
 
 #endif

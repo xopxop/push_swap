@@ -43,7 +43,13 @@
 		"__locale": "c",
 		"__string": "c",
 		"regex": "c",
-		"random": "c"
+		"random": "c",
+		"unistd.h": "c",
+		"cstdlib": "c",
+		"locale": "c",
+		"new": "c",
+		"execution_info.h": "c",
+		"ft_printf.h": "c"
 	},
 	//"C_Cpp.errorSquiggles": "disabled"
 }

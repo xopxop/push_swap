@@ -22,7 +22,7 @@ $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $(BUILD_DIR)/$(notdir $@)
 
 $(PROGRAM): $(MATCHING_RULE) $(MATCHING_RULE_SHARED_FILE)
-	$(CC) $(CFLAGS) $(shell find $(BUILD_DIR) -name '*.o') $(LIB) -o $@
+	$(CC) $(CFLAGS) $(BUILD_DIR)/*.o $(LIB) $(LIB) -o $@
 	
 clean:
 	rm -Rf $(BUILD_DIR)

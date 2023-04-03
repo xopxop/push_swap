@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data-printer.h                                     :+:      :+:    :+:   */
+/*   execution-info.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 20:09:41 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/25 20:30:41 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/27 06:37:56 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/03 05:37:36 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_PRINTER_H
-# define DATA_PRINTER_H
-# include "data.h"
+#ifndef EXECUTION_INFO_H
+# define EXECUTION_INFO_H
 
-typedef struct s_printer {
-	int max_cols_a;
-	int max_cols_b;
-	int rows;
-  t_data *data;
-  char *instruction;
-} t_printer;
-
-t_printer *new_printer_object(t_data *data, char *instruction);
-void delete_printer_object(t_printer *obj);
-void printer_print(t_printer *printer);
+typedef struct s_execution_info
+{
+	int color_a1;
+	int color_a2;
+	int color_b1;
+	int color_b2;
+	unsigned int increment;
+} t_execution_info;
 
 #endif

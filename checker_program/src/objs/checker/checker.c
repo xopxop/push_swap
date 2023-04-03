@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:24:55 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 16:56:38 by dthan            ###   ########.fr       */
+/*   Updated: 2023/03/29 18:55:47 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stddef.h>
 #include "../../../../libft/includes/libft.h"
 #include "checker-helper.h"
+#include "../../lib/lib.h"
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
 #define CHECKER_VALIDATOR_PASSED 1
@@ -22,10 +23,16 @@
 int	checker_execute_instructions(t_checker *program)
 {
 	int	i;
+	t_execution_info exec_info;
 
 	i = 0;
 	while (program->instructions[i])
-		data_execute_instruction(program->data, program->instructions[i++]);
+	{
+		data_execute_instruction_extended(program->data, &exec_info ,program->instructions[i]);
+		if (program->config->display_stacks)
+			display_stacks(program->config, program->data, program->instructions[i], &exec_info);
+		i++;
+	}
 	if (stack_is_empty(program->data->stack_b) && stack_is_sorted_in_ascending_order(program->data->stack_a))
 	{
 		ft_printf("OK\n");
@@ -40,6 +47,9 @@ int	checker_execute_instructions(t_checker *program)
 
 static int	checker_constructor(t_checker *program, char **argv)
 {
+	program->config = new_config_object(&argv);
+	if (!program->config)
+		return (CONSTRUCTOR_FAILED);
 	program->data = new_data_object(argv);
 	if (!program->data)
 		return (CONSTRUCTOR_FAILED);
@@ -62,6 +72,7 @@ static t_checker	*checker_destructor(t_checker *program)
 			free(program->instructions[index++]);
 		free(program->instructions);
 	}
+	delete_config_object(program->config);
 	free(program);
 	return (NULL);
 }
@@ -74,9 +85,15 @@ void delete_checker_object(t_checker *object)
 t_checker	*new_checker_object(char **argv)
 {
 	t_checker	*checker;
+	t_execution_info exec_info;
 
 	checker = (t_checker *)malloc(sizeof(t_checker));
 	if (checker_constructor(checker, argv) == CONSTRUCTOR_FAILED)
 		return (checker_destructor(checker));
+	if (checker->config->display_stacks)
+	{
+		set_exec_info(&exec_info, 0, (int[]){-1, -1, -1, -1});
+		display_stacks(checker->config, checker->data, NULL, &exec_info);
+	}
 	return (checker);
 }

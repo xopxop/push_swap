@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:27:30 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/23 19:47:53 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 05:55:06 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	stack_add(t_stack *stack, int element)
 int	stack_reduce(t_stack *stack)
 {
 	stack->length--;
-	return stack->data[stack->length + 1];
+	return stack->data[stack->length];
 }
 
 void	stack_swap(t_stack *stack)
