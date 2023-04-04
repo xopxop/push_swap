@@ -6,25 +6,31 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:05:12 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 06:05:09 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/04 21:58:16 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../objs/push_swap/push_swap.h"
 #include "../../../libft/includes/libft.h"
 
-static int can_rotate(t_stack *stack, int order)
+static int	can_rotate(t_stack *stack, int order)
 {
 	if (stack->length > 2)
 	{
 		if (order == ASCENDING)
 		{
-			if (stack->data[0] > stack->data[1] && stack->data[0] > stack->data[stack->length - 1])
+			if (
+				stack->data[0] > stack->data[1] && \
+				stack->data[0] > stack->data[stack->length - 1]
+			)
 				return (1);
 		}
 		else if (order == DESCENDING)
 		{
-			if (stack->data[0] < stack->data[1] && stack->data[0] < stack->data[stack->length - 1])
+			if (
+				stack->data[0] < stack->data[1] && \
+				stack->data[0] < stack->data[stack->length - 1]
+			)
 				return (1);
 		}
 	}
@@ -37,24 +43,33 @@ static int	can_reverse_rotate(t_stack *stack, int order)
 	{
 		if (order == ASCENDING)
 		{
-			if (stack->data[0] > stack->data[stack->length - 1] && stack->data[0] < stack->data[1])
+			if (
+				stack->data[0] > stack->data[stack->length - 1] && \
+				stack->data[0] < stack->data[1]
+			)
 				return (1);
 		}
 		else if (order == DESCENDING)
 		{
-			if (stack->data[0] < stack->data[stack->length - 1] && stack->data[0] > stack->data[1])
+			if (
+				stack->data[0] < stack->data[stack->length - 1] && \
+				stack->data[0] > stack->data[1]
+			)
 				return (1);
 		}
 	}
 	return (0);
 }
 
-int algo_max_3(t_push_swap *program)
+int	algo_max_3(t_push_swap *program)
 {
-	t_stack *stack_a = program->data->stack_a;
-	char *instruction = NULL;
-	int operation_count = 0;
+	t_stack	*stack_a;
+	char	*instruction;
+	int		operation_count;
 
+	stack_a = program->data->stack_a;
+	instruction = NULL;
+	operation_count = 0;
 	while (!stack_is_sorted_in_ascending_order(stack_a))
 	{
 		if (can_rotate(stack_a, ASCENDING))

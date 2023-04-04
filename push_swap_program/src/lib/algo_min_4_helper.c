@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:08:32 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 22:38:31 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/04 22:55:38 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,47 @@
 #include "../objs/move/move.h"
 #include "../../../libft/includes/libft.h"
 
-static int execute_rotate_double_stacks(t_data *data, t_move *move, int reverse)
+static void	execute_rotate_double_stacks(
+	t_data *data, t_move *move, int reverse)
 {
-	int operation_count = 0;
-	int max;
+	int	max;
+	int	index;
 
+	index = 0;
 	if (!reverse)
 	{
-		max = (move->rotate_a <= move->rotate_b) ? move->rotate_a : move->rotate_b;
-		for (int i = 0; i < max; i++)
+		if (move->rotate_a <= move->rotate_b)
+			max = move->rotate_a;
+		else
+			max = move->rotate_b;
+		while (index < max)
 		{
-			operation_count += data_execute_instruction(data, "rr");
+			data_execute_instruction(data, "rr");
 			move->rotate_a--;
 			move->rotate_b--;
+			index++;
 		}
 	}
 	else
 	{
-		max = (move->rotate_a >= move->rotate_b) ? move->rotate_a : move->rotate_b;
-		for (int i = 0; i > max; i--)
+		if (move->rotate_a >= move->rotate_b)
+			max = move->rotate_a;
+		else
+			max = move->rotate_b;
+		while (index > max)
 		{
-			operation_count += data_execute_instruction(data, "rrr");
+			data_execute_instruction(data, "rrr");
 			move->rotate_a++;
 			move->rotate_b++;
+			index--;
 		}
 	}
-	return operation_count;
 }
 
-static int execute_rotate_singular_stack(t_data *data, int *rotate, const char *stack_name)
+static void	execute_rotate_singular_stack(
+	t_data *data, int *rotate, const char *stack_name)
 {
-	int operation_count = 0;
-	char instruction[4];
+	char	instruction[4];
 
 	if (*rotate != 0)
 	{
@@ -55,54 +64,61 @@ static int execute_rotate_singular_stack(t_data *data, int *rotate, const char *
 			ft_strcat(ft_strcpy(instruction, "rr"), stack_name);
 		while (*rotate != 0)
 		{
-			operation_count += data_execute_instruction(data, instruction);
+			data_execute_instruction(data, instruction);
 			if (*rotate > 0)
 				(*rotate)--;
 			else
 				(*rotate)++;
 		}
 	}
-	return operation_count;
 }
 
-int execute_the_best_move(t_data *data, t_move *move)
+void	execute_the_best_move(t_data *data, t_move *move)
 {
-	int operation_count = 0;
-
 	if (move->rotate_a > 0 && move->rotate_b > 0)
-		operation_count += execute_rotate_double_stacks(data, move, 0);
+		execute_rotate_double_stacks(data, move, 0);
 	else if (move->rotate_a < 0 && move->rotate_b < 0)
-		operation_count += execute_rotate_double_stacks(data, move, 1);
+		execute_rotate_double_stacks(data, move, 1);
 	if (move->rotate_a != 0)
-		operation_count += execute_rotate_singular_stack(data, &move->rotate_a, data->stack_a->name);		
+		execute_rotate_singular_stack(
+			data, &move->rotate_a, data->stack_a->name);
 	if (move->rotate_b != 0)
-		operation_count += execute_rotate_singular_stack(data, &move->rotate_b, data->stack_b->name);	
-	return operation_count;
+		execute_rotate_singular_stack(
+			data, &move->rotate_b, data->stack_b->name);
 }
 
-static t_move *get_move(t_data *data, int number)
+static t_move	*get_move(t_data *data, int number)
 {
-	int index_a;
-	int index_b;
-	int rotate_a = 0;
-	int rotate_b = 0;
+	int	index_a;
+	int	index_b;
+	int	rotate_a;
+	int	rotate_b;
 
-	index_a = stack_get_index(data->stack_a, stack_get_closet_bigger_number(data->stack_a, number));
+	rotate_a = 0;
+	rotate_b = 0;
+	index_a = stack_get_index(
+			data->stack_a,
+			stack_get_closet_bigger_number(data->stack_a, number));
 	index_b = stack_get_index(data->stack_b, number);
-	if (index_b != 0)
-		rotate_b = (index_b <= data->stack_b->length / 2) ? index_b : -(data->stack_b->length - index_b);
-	if (index_a != 0)
-		rotate_a = (index_a <= data->stack_a->length / 2) ? index_a : -(data->stack_a->length - index_a);
-	return new_move_object(rotate_a, rotate_b);
+	if (index_b != 0 && index_b <= data->stack_b->length / 2)
+		rotate_b = index_b;
+	else if (index_b != 0)
+		rotate_b = -(data->stack_b->length - index_b);
+	if (index_a != 0 && index_a <= data->stack_a->length / 2)
+		rotate_a = index_a;
+	else if (index_a != 0)
+		rotate_a = -(data->stack_a->length - index_a);
+	return (new_move_object(rotate_a, rotate_b));
 }
 
-t_move *find_the_best_move(t_data *data)
+t_move	*find_the_best_move(t_data *data)
 {
-	int index = 0;
-	t_move *temp_strategy;
-	t_move *best_move;
-	t_move *current_move;
-	
+	int		index;
+	t_move	*temp_strategy;
+	t_move	*best_move;
+	t_move	*current_move;
+
+	index = 0;
 	while (index < data->stack_b->length)
 	{
 		if (index == 0)
@@ -121,5 +137,5 @@ t_move *find_the_best_move(t_data *data)
 		}
 		index++;
 	}
-	return best_move;
+	return (best_move);
 }

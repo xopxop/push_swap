@@ -6,13 +6,12 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 06:02:30 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/04 23:10:51 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../../lib/algo.h"
-
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
 
@@ -32,14 +31,14 @@ t_push_swap	*push_swap_destructor(t_push_swap *program)
 	return (NULL);
 }
 
-void delete_push_swap_object(t_push_swap *program)
+void	delete_push_swap_object(t_push_swap *program)
 {
 	push_swap_destructor(program);
 }
 
-t_push_swap *new_push_swap_object(char **input_list)
+t_push_swap	*new_push_swap_object(char **input_list)
 {
-	t_push_swap *push_swap;
+	t_push_swap	*push_swap;
 
 	push_swap = (t_push_swap *)malloc(sizeof(t_push_swap));
 	if (push_swap_constructor(push_swap, input_list) == CONSTRUCTOR_FAILED)
@@ -47,9 +46,10 @@ t_push_swap *new_push_swap_object(char **input_list)
 	return (push_swap);
 }
 
-int push_swap_run(t_push_swap *program)
+void	push_swap_run(t_push_swap *program)
 {
 	if (program->data->stack_a->length > 3)
-		return algo_min_4(program);
-	return algo_max_3(program);
+		algo_min_4(program);
+	else
+		algo_max_3(program);
 }
