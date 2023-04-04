@@ -49,7 +49,8 @@
 		"locale": "c",
 		"new": "c",
 		"execution_info.h": "c",
-		"ft_printf.h": "c"
+		"ft_printf.h": "c",
+		"data-modification-helper.h": "c"
 	},
 	//"C_Cpp.errorSquiggles": "disabled"
 }

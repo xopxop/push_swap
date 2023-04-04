@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:53:38 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 06:49:23 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/04 15:45:28 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "execution-info.h"
 #include "../../libft/includes/libft.h"
 
+#include <stdio.h>
 int	data_execute_instruction(t_data *data, char *command)
 {
 	ft_printf("%s\n", command);

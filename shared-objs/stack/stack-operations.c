@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:27:30 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 05:55:06 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/04 17:47:07 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,17 @@ void	stack_push(t_stack *stack, int element)
 	{
 		if (index == 0)
 		{
-			temp_a = stack->data[index + 1];
-			stack->data[index + 1] = stack->data[index];
+			temp_a = stack->data[index];
+			stack->data[index] = element;
 		}
 		else
 		{
-			temp_b = stack->data[index + 1];
-			stack->data[index + 1] = temp_a;
+			temp_b = stack->data[index];
+			stack->data[index] = temp_a;
 			temp_a = temp_b;
 		}
 		index++;
 	}
-	stack->data[0] = element;
 	stack->length++;
 }
 

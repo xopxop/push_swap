@@ -1,5 +1,5 @@
 CC := clang
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g
 DEBUG := -g
 PROGRAM = checker
 SOURCES_DIR:= ./src

@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:15:10 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 22:48:26 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/04 15:49:32 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,11 @@ static int real_sort(t_push_swap *program)
 
 	while (program->data->stack_b->length != 0)
 	{
-		printf("here1: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
 		best_move = find_the_best_move(program->data);
 		operation_count += execute_the_best_move(program->data, best_move);
-		printf("here2: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
 		operation_count	+= data_execute_instruction(program->data, "pa");
-		printf("here3: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
+		// use delete object not free
 		free(best_move);
-		printf("here4: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
 	}
 	return operation_count;
 }

@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:48:34 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 22:51:34 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/04 17:48:02 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ static int  do_swap(t_stack *stack_a, t_stack *stack_b, int op)
 	return (1);
 }
 
+#include <stdio.h>
+
 static int  do_push(t_stack *stack_a, t_stack *stack_b, int op)
 {
-	printf("here123: [%s]-[%s]\n", stack_a->name, stack_b->name);
 	if (op == A_ONLY && stack_b->length > 0)
 		stack_push(stack_a, stack_pop(stack_b));
 	else if (op == B_ONLY && stack_a->length > 0)

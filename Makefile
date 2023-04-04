@@ -1,5 +1,5 @@
 CC := clang
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g
 DEBUG := -g
 CHECKER_DIR = ./checker_program
 PUSH_SWAP_DIR = ./push_swap_program
