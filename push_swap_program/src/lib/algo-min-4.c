@@ -6,13 +6,15 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:15:10 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 06:47:49 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/03 22:48:26 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../objs/push_swap/push_swap.h"
 #include "../objs/move/move.h"
 #include "algo-tool.h"
+#include <stdio.h>
+
 
 static int organize_stack_a(t_data *data)
 {
@@ -32,10 +34,14 @@ static int real_sort(t_push_swap *program)
 
 	while (program->data->stack_b->length != 0)
 	{
+		printf("here1: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
 		best_move = find_the_best_move(program->data);
 		operation_count += execute_the_best_move(program->data, best_move);
+		printf("here2: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
 		operation_count	+= data_execute_instruction(program->data, "pa");
-		free(best_move);	
+		printf("here3: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
+		free(best_move);
+		printf("here4: [%s]-[%s]\n", program->data->stack_a->name, program->data->stack_b->name);
 	}
 	return operation_count;
 }
@@ -55,8 +61,6 @@ static int pre_sort(t_push_swap *program)
 	}
 	return operation_count;
 }
-
-#include <stdio.h>
 
 int algo_min_4(t_push_swap *program)
 {
