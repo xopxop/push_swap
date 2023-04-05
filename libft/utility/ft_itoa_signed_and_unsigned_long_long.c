@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 08:08:13 by dthan             #+#    #+#             */
-/*   Updated: 2020/02/21 08:08:18 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:57:58 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,16 @@ static int	getsizenumber(unsigned long long nb)
 
 char	*malloc_string(unsigned int size, long long n)
 {
+	char	*str;
+
 	if (n < 0)
-		return ((char *)malloc(sizeof(char) * (size + 2)));
-	return ((char *)malloc(sizeof(char) * (size + 1)));
+	{
+		str = ((char *)malloc(sizeof(char) * (size + 2)));
+		str[0] = '-';
+	}
+	else
+		str = ((char *)malloc(sizeof(char) * (size + 1)));
+	return (str);
 }
 
 char	*ft_itoa_signed_longlong(long long n)

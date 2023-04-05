@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 19:15:05 by dthan             #+#    #+#             */
-/*   Updated: 2022/11/27 21:01:07 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:58:57 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ char	**ft_array_calloc(char **old_array, char *item)
 	increment = 0;
 	if (old_array)
 	{
-		new_array = (char **)malloc(sizeof(char *) * (ft_arrayct(old_array) + 2));
+		new_array = (char **)malloc(sizeof(char *) * \
+			(ft_arrayct(old_array) + 2));
 		while (old_array && old_array[increment])
 		{
 			new_array[increment] = old_array[increment];
 			increment++;
 		}
 		free(old_array);
-	} else {
-		new_array = (char **)malloc(sizeof(char *) * 2);
 	}
+	else
+		new_array = (char **)malloc(sizeof(char *) * 2);
 	new_array[increment++] = item;
 	new_array[increment] = NULL;
 	return (new_array);
