@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data-modification-helper.h                         :+:      :+:    :+:   */
+/*   stack_helper.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 19:42:07 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/27 10:11:13 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/23 17:12:54 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/05 16:38:07 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_MODIFICATION_HELPER_H
-# define DATA_MODIFICATION_HELPER_H
-#define A_ONLY 1
-#define B_ONLY 2
-#define BOTH 3
-#include "../stack/stack.h"
+#ifndef STACK_HELPER_H
+# define STACK_HELPER_H
+# include "stack.h"
 
-int	execute_instruction(t_stack *stack_a, t_stack *stack_b, char *command);
+int	is_dup(char *argv, t_stack *stack);
+int	is_number(char *argv);
 
 #endif

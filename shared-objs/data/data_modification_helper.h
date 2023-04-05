@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution-info.h                                   :+:      :+:    :+:   */
+/*   data_modification_helper.h                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 06:37:56 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 05:37:36 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/23 19:42:07 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/05 16:32:41 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_INFO_H
-# define EXECUTION_INFO_H
+#ifndef DATA_MODIFICATION_HELPER_H
+# define DATA_MODIFICATION_HELPER_H
+# define A_ONLY 1
+# define B_ONLY 2
+# define BOTH 3
+# include "../stack/stack.h"
 
-typedef struct s_execution_info
-{
-	int color_a1;
-	int color_a2;
-	int color_b1;
-	int color_b2;
-	unsigned int increment;
-} t_execution_info;
+int	execute_instruction(t_stack *stack_a, t_stack *stack_b, char *command);
 
 #endif

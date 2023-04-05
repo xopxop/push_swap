@@ -6,12 +6,12 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:28:43 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/05 00:14:52 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 16:35:55 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
-#include "data-helper.h"
+#include "data_helper.h"
 #include "../../libft/includes/libft.h"
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0

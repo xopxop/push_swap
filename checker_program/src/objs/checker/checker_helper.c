@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker-helper.c                                   :+:      :+:    :+:   */
+/*   checker_helper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:42:47 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/03 06:40:15 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 14:41:26 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_valid_instruction(char *instruction)
 	while (valid_instructions[i])
 	{
 		if (!ft_strcmp(instruction, valid_instructions[i]))
-			return (1);			
+			return (1);
 		i++;
 	}
 	ft_printf("%s\n", instruction);

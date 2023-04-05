@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker-helper.h                                   :+:      :+:    :+:   */
+/*   execution-info.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 14:46:44 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/24 14:47:09 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/27 06:37:56 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/05 16:22:22 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_HELPER_H
-# define CHECKER_HELPER_H
+#ifndef EXECUTION_INFO_H
+# define EXECUTION_INFO_H
 
-char	**get_instructions(void);
+typedef struct s_execution_info
+{
+	int				color_a1;
+	int				color_a2;
+	int				color_b1;
+	int				color_b2;
+	unsigned int	increment;
+}	t_execution_info;
 
 #endif

@@ -6,15 +6,15 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:24:55 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/29 18:55:47 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 15:51:16 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include <stddef.h>
 #include "../../../../libft/includes/libft.h"
-#include "checker-helper.h"
-#include "../../lib/lib.h"
+#include "checker_helper.h"
+#include "../../lib/checker_lib.h"
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
 #define CHECKER_VALIDATOR_PASSED 1
@@ -22,18 +22,20 @@
 
 int	checker_execute_instructions(t_checker *program)
 {
-	int	i;
-	t_execution_info exec_info;
+	int					i;
+	t_execution_info	exec_info;
 
 	i = 0;
 	while (program->instructions[i])
 	{
-		data_execute_instruction_extended(program->data, &exec_info ,program->instructions[i]);
+		data_execute_instruction_extended(
+			program->data, &exec_info, program->instructions[i]);
 		if (program->config->display_stacks)
-			display_stacks(program->config, program->data, program->instructions[i], &exec_info);
+			display_stacks(program, i, &exec_info);
 		i++;
 	}
-	if (stack_is_empty(program->data->stack_b) && stack_is_sorted_in_ascending_order(program->data->stack_a))
+	if (stack_is_empty(program->data->stack_b) && \
+		stack_is_sorted_in_ascending_order(program->data->stack_a))
 	{
 		ft_printf("OK\n");
 		return (CHECKER_VALIDATOR_PASSED);
@@ -77,23 +79,23 @@ static t_checker	*checker_destructor(t_checker *program)
 	return (NULL);
 }
 
-void delete_checker_object(t_checker *object)
+void	delete_checker_object(t_checker *object)
 {
 	checker_destructor(object);
 }
 
 t_checker	*new_checker_object(char **argv)
 {
-	t_checker	*checker;
-	t_execution_info exec_info;
+	t_checker			*checker;
+	t_execution_info	exec_info;
 
 	checker = (t_checker *)malloc(sizeof(t_checker));
 	if (checker_constructor(checker, argv) == CONSTRUCTOR_FAILED)
 		return (checker_destructor(checker));
 	if (checker->config->display_stacks)
 	{
-		set_exec_info(&exec_info, 0, (int[]){-1, -1, -1, -1});
-		display_stacks(checker->config, checker->data, NULL, &exec_info);
+		set_exec_info(&exec_info, 0, (int []){-1, -1, -1, -1});
+		display_stacks(checker, -1, &exec_info);
 	}
 	return (checker);
 }

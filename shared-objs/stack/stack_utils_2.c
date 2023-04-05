@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack-helper.c                                     :+:      :+:    :+:   */
+/*   stack_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 17:09:38 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:20:37 by dthan            ###   ########.fr       */
+/*   Created: 2023/04/05 16:45:51 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/05 16:46:01 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/includes/libft.h"
 #include "stack.h"
 
-int	is_number(char *argv)
+int	stack_is_empty(t_stack *stack)
 {
-	int	i;
+	return (!stack->length);
+}
 
-	i = 0;
-	if (argv[i] == '-')
-		i++;
-	while (argv[i])
-		if (!ft_isdigit(argv[i++]))
+int	stack_is_sorted_in_ascending_order(t_stack *stack)
+{
+	int	index;
+
+	index = 0;
+	while (index < stack->length - 1)
+	{
+		if (stack->data[index] > stack->data[index + 1])
 			return (0);
+		index++;
+	}
 	return (1);
 }
 
-int	is_dup(char *argv, t_stack *stack)
+int	stack_is_descending_sorted(t_stack *stack)
 {
-	int	number = ft_atoi(argv);
-	int index = 0;
+	int	index;
 
-	while (index < stack->length)
+	index = 0;
+	while (index < stack->length - 1)
 	{
-		if (number == stack->data[index])
-			return (1);
+		if (stack->data[index] < stack->data[index + 1])
+			return (0);
 		index++;
 	}
-	return (0);
+	return (1);
 }

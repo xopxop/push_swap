@@ -6,17 +6,18 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:27:30 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/04 17:47:07 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 16:49:32 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int stack_pop(t_stack *stack)
+int	stack_pop(t_stack *stack)
 {
-	int element;
-	int index = 0;
+	int	element;
+	int	index;
 
+	index = 0;
 	element = stack->data[0];
 	while (index < stack->length - 1)
 	{
@@ -24,15 +25,16 @@ int stack_pop(t_stack *stack)
 		index++;
 	}
 	stack->length--;
-	return element;
+	return (element);
 }
 
 void	stack_push(t_stack *stack, int element)
 {
-	int index = 0;
-	int temp_a;
-	int temp_b;
+	int	index;
+	int	temp_a;
+	int	temp_b;
 
+	index = 0;
 	while (index < stack->length + 1)
 	{
 		if (index == 0)
@@ -60,12 +62,12 @@ void	stack_add(t_stack *stack, int element)
 int	stack_reduce(t_stack *stack)
 {
 	stack->length--;
-	return stack->data[stack->length];
+	return (stack->data[stack->length]);
 }
 
 void	stack_swap(t_stack *stack)
 {
-	int temp;
+	int	temp;
 
 	temp = stack->data[1];
 	stack->data[1] = stack->data[0];

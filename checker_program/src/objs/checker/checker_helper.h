@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data-helper.h                                      :+:      :+:    :+:   */
+/*   checker_helper.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 17:38:53 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/23 19:59:29 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/24 14:46:44 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/05 14:39:20 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HELPER_H
-# define DATA_HELPER_H
+#ifndef CHECKER_HELPER_H
+# define CHECKER_HELPER_H
 
-char **refine_input_list(char **input_list);
+char	**get_instructions(void);
 
 #endif

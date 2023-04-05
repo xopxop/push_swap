@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   checker_lib.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 18:25:06 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/05 14:35:27 by dthan            ###   ########.fr       */
+/*   Created: 2023/03/29 17:59:20 by dthan             #+#    #+#             */
+/*   Updated: 2023/04/05 15:52:03 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
-# include "../../../../shared-objs/data/data.h"
-# include "../../../../shared-objs/config/config.h"
+#ifndef CHECKER_LIB_H
+# define CHECKER_LIB_H
+# include "../objs/checker/checker.h"
+# include "./printing_service/printing_service.h"
 
-typedef struct s_checker {
-	t_data		*data;
-	char		**instructions;
-	t_config	*config;
-}	t_checker;
-
-t_checker	*new_checker_object(char **argv);
-void		delete_checker_object(t_checker *object);
-int			checker_execute_instructions(t_checker *program);
+void	display_stacks(
+			t_checker *checker,
+			int instruction_index,
+			t_execution_info *exec_info);
 
 #endif

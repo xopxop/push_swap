@@ -6,13 +6,13 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:53:38 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/05 00:32:05 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 16:37:21 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data-modification-helper.h"
+#include "data_modification_helper.h"
 #include "data.h"
-#include "execution-info.h"
+#include "execution_info.h"
 #include "../../libft/includes/libft.h"
 
 void	data_execute_instruction(t_data *data, char *command)
@@ -21,7 +21,7 @@ void	data_execute_instruction(t_data *data, char *command)
 	execute_instruction(data->stack_a, data->stack_b, command);
 }
 
-static void	set_exec_info(t_execution_info *exec_info, int ret, int *color)
+void	set_exec_info(t_execution_info *exec_info, int ret, int *color)
 {
 	exec_info->increment = ret;
 	exec_info->color_a1 = color[0];
@@ -30,27 +30,31 @@ static void	set_exec_info(t_execution_info *exec_info, int ret, int *color)
 	exec_info->color_b2 = color[3];
 }
 
-static int[] set_colors(char *color)
+static int	*set_colors(char *cmd, t_stack *stack_a, t_stack *stack_b)
 {
-	if (color == NULL)
-		return (int []){-1, -1, -1, -1});
-	else if (ft_strequ(color, "sa"))
-		return (int []){0, 1, -1, -1});
-	else if (ft_strequ(color, "sb"))
-		return (int []){-1, -1, 0, 1});
-	else if (ft_strequ(color, "ss"));
-		return (int []){0, 1, 0, 1});
-	else if (ft_strequ(color, "pa"));
-		return (int []){0, -1, -1, -1});
-	else if (ft_strequ(color, "pb"))
-		return (int []){-1, -1, 0, -1});
-	else if (ft_strequ(color, "ra"))
-		return (int []){0, data->stack_a->length - 1, -1});
-	else if (ft_strequ(color, "rb"))
-		return (int []){-1, -1 -0, data->stack_b->length - 1});
-	else if (ft_strequ(color, "rr"))
-		return (int []){0, data->stack_a->length - 1, 0, data->stack_b->length - 1});
-	else of (ft_strequ(color, "rra"))
+	if (cmd == NULL)
+		return ((int []){-1, -1, -1, -1});
+	else if (ft_strequ(cmd, "sa"))
+		return ((int []){0, 1, -1, -1});
+	else if (ft_strequ(cmd, "sb"))
+		return ((int []){-1, -1, 0, 1});
+	else if (ft_strequ(cmd, "ss"))
+		return ((int []){0, 1, 0, 1});
+	else if (ft_strequ(cmd, "pa"))
+		return ((int []){0, -1, -1, -1});
+	else if (ft_strequ(cmd, "pb"))
+		return ((int []){-1, -1, 0, -1});
+	else if (ft_strequ(cmd, "ra"))
+		return ((int []){0, stack_a->length - 1, -1});
+	else if (ft_strequ(cmd, "rb"))
+		return ((int []){-1, -1 -0, stack_b->length - 1});
+	else if (ft_strequ(cmd, "rr"))
+		return ((int []){0, stack_a->length - 1, 0, stack_b->length - 1});
+	else if (ft_strequ(cmd, "rra"))
+		return ((int []){0, stack_a->length - 1, -1});
+	else if (ft_strequ(cmd, "rrb"))
+		return ((int []){-1, -1 -0, stack_b->length - 1});
+	return ((int []){0, stack_a->length - 1, 0, stack_b->length - 1});
 }
 
 void	data_execute_instruction_extended(
@@ -60,33 +64,9 @@ void	data_execute_instruction_extended(
 
 	ret = execute_instruction(data->stack_a, data->stack_b, instruction);
 	if (!ret)
-		set_exec_info(exec_info, ret, (int []){-1, -1, -1, -1});
-	else if (!ft_strcmp(instruction, "sa"))
-		set_exec_info(exec_info, ret, ;
-	else if (!ft_strcmp(instruction, "sb"))
-		set_exec_info(exec_info, ret, ;
-	else if (!strcmp(instruction, "ss"))
-		set_exec_info(exec_info, ret, ;
-	else if (!strcmp(instruction, "pa"))
-		set_exec_info(exec_info, ret, ;
-	else if (!strcmp(instruction, "pb"))
-		set_exec_info(exec_info, ret, ;
-	else if (!strcmp(instruction, "ra"))
-		set_exec_info(
-			exec_info, ret, ;
-	else if (!strcmp(instruction, "rb"))
-		set_exec_info(
-			exec_info, ret, 
-	else if (!strcmp(instruction, "rr"))
-		set_exec_info(
-			exec_info, ret, 
-	else if (!strcmp(instruction, "rra"))
-		set_exec_info(
-			exec_info, ret, (int []){0, data->stack_a->length - 1, -1});
-	else if (!strcmp(instruction, "rrb"))
-		set_exec_info(
-			exec_info, ret, (int []){-1, -1 -0, data->stack_b->length - 1});
+		set_exec_info(exec_info, ret,
+			set_colors(NULL, data->stack_a, data->stack_b));
 	else
-		set_exec_info(
-			exec_info, ret, (int []){0, data->stack_a->length - 1, 0, data->stack_b->length - 1});
+		set_exec_info(exec_info, ret,
+			set_colors(instruction, data->stack_a, data->stack_b));
 }

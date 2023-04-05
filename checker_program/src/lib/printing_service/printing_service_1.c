@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing-service-1.c                               :+:      :+:    :+:   */
+/*   printing_service_1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:04:37 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/04 21:49:45 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 15:45:27 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/ioctl.h>
 #include <unistd.h>
-#include "printing-service.h"
+#include "printing_service.h"
 #include "../../../../libft/includes/libft.h"
-#include "printing-service-helper.h"
+#include "printing_service_helper.h"
+#include "../../objs/checker/checker.h"
 
-void print_separator()
+void	print_separator(void)
 {
-	struct winsize w;
-	int index;
+	struct winsize	w;
+	int				index;
 
 	index = 0;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
@@ -30,7 +31,7 @@ void print_separator()
 	}
 }
 
-void print_instruction(char *instruction)
+void	print_instruction(char *instruction)
 {
 	if (instruction)
 		ft_printf("Exec %s:\n", instruction);
@@ -38,13 +39,16 @@ void print_instruction(char *instruction)
 		write(STDOUT_FILENO, "Init a and b:\n", 14);
 }
 
-void display_stacks(t_config *config, t_data *data, char *instruction, t_execution_info *exec_info)
+void	display_stacks(
+			t_checker *checker,
+			int instruction_index,
+			t_execution_info *exec_info)
 {
-	t_printing_service service;
+	t_printing_service	service;
 
-	init_printing_service(&service, data, instruction, exec_info, config);
+	init_printing_service(&service, checker, instruction_index, exec_info);
 	print_separator();
-	print_instruction(instruction);
+	print_instruction(service.instruction_ptr);
 	while (service.rows > 0)
 	{
 		reset_printing_service(&service);
