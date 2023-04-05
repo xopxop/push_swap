@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:37:09 by dthan             #+#    #+#             */
-/*   Updated: 2023/03/27 05:59:25 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 00:09:42 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 #define DISPLAY_OPTION "-v"
 #define COLOUR_OPTION "-c"
 
-static int config_constructor(t_config *obj, char ***argv)
+static int	config_constructor(t_config *obj, char ***argv)
 {
-	char **inputs = *argv;
-	while (**argv)
+	char	**inputs;
+
+	inputs = *argv;
+	while (*inputs)
 	{
 		if (ft_strequ(*inputs, DISPLAY_OPTION))
 		{
@@ -38,32 +40,33 @@ static int config_constructor(t_config *obj, char ***argv)
 				return (CONSTRUCTOR_FAILED);
 		}
 		else
-			break;
+			break ;
 		inputs++;
 	}
 	*argv = inputs;
 	return (CONSTRUCTOR_SUCCESS);
 }
 
-static t_config *config_destructor(t_config *obj)
+static t_config	*config_destructor(t_config *obj)
 {
 	free(obj);
 	return (NULL);
 }
 
-void delete_config_object(t_config *obj)
+void	delete_config_object(t_config *obj)
 {
 	config_destructor(obj);
 }
 
-t_config *new_config_object(char ***argv)
+t_config	*new_config_object(char ***argv)
 {
-	t_config *obj = (t_config*)malloc(sizeof(t_config));
+	t_config	*obj;
 
+	obj = (t_config *)malloc(sizeof(t_config));
 	obj->colour_the_last_operation = 0;
 	obj->display_stacks = 0;
 	obj->read_and_write_from_file = 0;
 	if (config_constructor(obj, argv) == CONSTRUCTOR_FAILED)
-		return config_destructor(obj);
+		return (config_destructor(obj));
 	return (obj);
 }
