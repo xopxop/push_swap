@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:28:41 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/04 23:07:24 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:23:51 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_move	*new_move_object(int rotate_a, int rotate_b)
 	return (move);
 }
 
-void	delete_instruction(t_move *move)
+void	delete_move_object(t_move *move)
 {
 	free(move);
 }

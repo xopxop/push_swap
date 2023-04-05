@@ -6,12 +6,13 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:29:02 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/04 23:10:51 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:20:10 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../../lib/algo.h"
+#include <stdlib.h>
 #define CONSTRUCTOR_SUCCESS 1
 #define CONSTRUCTOR_FAILED 0
 
