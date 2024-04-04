@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:34:27 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/05 15:35:13 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 18:06:18 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "printing_service.h"
 #define AC_YELLOW "\x1b[33m"
 #define AC_NORMAL "\x1b[m"
+
+static void print_row_2(t_printing_row_info_service info)
+{
+	if (info.max_cols_b == 0)
+		info.max_cols_b = 1;
+	ft_printf("%.*s %.*s\n", info.max_cols_a,
+		"--------------", info.max_cols_b, "--------------");
+	ft_printf("%-*c %-*c\n", info.max_cols_a, 'a', info.max_cols_b, 'b');
+}
 
 void	print_row(t_printing_row_info_service info)
 {
@@ -35,10 +44,5 @@ void	print_row(t_printing_row_info_service info)
 			ft_putendl("");
 	}
 	else
-	{
-		// need to improve this
-		ft_printf("%.*s %.*s\n", info.max_cols_a,
-			"--------------", info.max_cols_b, "--------------");
-		ft_printf("%-*c %-*c\n", info.max_cols_a, 'a', info.max_cols_b, 'b');
-	}
+		print_row_2(info);
 }

@@ -6,7 +6,7 @@
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:04:37 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/05 15:45:27 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/05 18:01:02 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	display_stacks(
 		service.rows--;
 	}
 	service.print_row_info_service.a = NULL;
-	service.print_row_info_service.a = NULL;
+	service.print_row_info_service.b = NULL;
 	print_row(service.print_row_info_service);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack-helper.c                                     :+:      :+:    :+:   */
+/*   stack_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <dthan@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:09:38 by dthan             #+#    #+#             */
-/*   Updated: 2023/04/05 16:47:54 by dthan            ###   ########.fr       */
+/*   Updated: 2023/04/06 12:26:21 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,26 @@ int	is_dup(char *argv, t_stack *stack)
 		index++;
 	}
 	return (0);
+}
+
+int is_greater_than_max_int(char **str)
+{
+	int negative;
+	int n;
+	int index;
+
+	index = 0;
+	negative = 0;
+	n = 0;
+	if (str[index] == '-' || str[index] == '+')
+	{
+		if (str[index == '-'])
+			negative = 1;
+		index++;
+	}
+	while (str[index])
+	{
+		n = n * 10 
+		index++;
+	}
 }
